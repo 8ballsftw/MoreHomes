@@ -1,0 +1,30 @@
+{
+  "name": "morehomes",
+  "description": "This is a reproduction of the airbnb \"More homes you may like\" module",
+  "author": "Brian de Regt",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8ballsftw/MoreHomes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/8ballsftw/MoreHomes/issues"
+  },
+  "homepage": "https://github.com/8ballsftw/MoreHomes#readme"
+}

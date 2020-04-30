@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS home_data;
+
+USE home_data;
+
+CREATE TABLE IF NOT EXISTS homes {
+  home_id int NOT NULL AUTO_INCREMENT,
+  title VARCHAR(50)
+}
