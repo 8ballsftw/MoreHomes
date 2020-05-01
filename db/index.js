@@ -28,7 +28,18 @@ let getHomeInfo = (id, callback) => {
       callback(err)
     } else {
       //console.log(res[0].home_id);
-      callback(null, res);
+      connection.query(`SELECT * FROM photo_info WHERE home_id = ${id}`, (err, succ) => {
+        if (err) {
+          callback(err)
+        } else {
+          let photos = [];
+          succ.map(photo => {
+            photos.push(photo.file_url);
+          })
+          res[0].photos = photos;
+          callback(null, res);
+        }
+      })
     }
   });
 }

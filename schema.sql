@@ -13,7 +13,6 @@ CREATE TABLE home_info (
   rating_num int,
   price int,
   is_plus int,
-  photo_url VARCHAR(255),
   PRIMARY KEY (home_id)
 );
 

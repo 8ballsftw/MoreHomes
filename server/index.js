@@ -14,8 +14,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/homeInfo/:property_id', (req, res) => {
-    // console.log(req.params)
-    //res.status(200).send(req.params.property_id);
     db.getHomeInfo(req.params.property_id, (err, succ) => {
       if (err) {
         throw err;
@@ -25,6 +23,11 @@ app.get('/homeInfo/:property_id', (req, res) => {
       }
     });
   }
-)
+);
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.put('/init', (req, res) => {
+  console.log(req.body)
+  res.status(200).send(req.body)
+})
+
+app.listen(port, () => console.log(`Ahoy cap't! Ready and Willing at port ${port}!!`))
