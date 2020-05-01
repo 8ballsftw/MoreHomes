@@ -18,9 +18,20 @@ let seed = (q) => {
     if (err) throw err;
     console.log('success!')
   })
-  //connection.end();
+
 }
 
-//
+//getting the info for one home
+let getHomeInfo = (id, callback) => {
+  connection.query(`SELECT * FROM home_info WHERE home_id = ${id}`, (err, res) => {
+    if (err) {
+      callback(err)
+    } else {
+      //console.log(res[0].home_id);
+      callback(null, res);
+    }
+  });
+}
 
+module.exports.getHomeInfo = getHomeInfo;
 module.exports.seed = seed;
