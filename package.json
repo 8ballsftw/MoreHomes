@@ -3,7 +3,6 @@
   "description": "This is a reproduction of the airbnb \"More homes you may like\" module",
   "author": "Brian de Regt",
   "license": "ISC",
-  "main": "index.js",
   "engines": {
     "node": ">=6.13.0"
   },
