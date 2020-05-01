@@ -1,4 +1,4 @@
-
+const db = require('./db/index.js');
 /*
 weighted random:
 function weightedRandom(prob) {
@@ -68,7 +68,9 @@ let seeder = () => {
   let price = randNum(25, 800);
   let isPlus = plus();
 
-  console.log(`INSERT INTO home_info (title, home_type, beds, rating, rating_num, price, is_plus) VALUES ("${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`)
+  db.seed(`INSERT INTO home_info (title, home_type, beds, rating, rating_num, price, is_plus) VALUES ("${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`)
 }
 
-seeder();
+for (var i = 0; i < 100; i++) {
+  seeder();
+}
