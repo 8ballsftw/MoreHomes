@@ -40,7 +40,7 @@ const seeder = (idx) => {
   const beds = randNum(1, 25);
   const ratingNum = randNum(0, 100);
   if (ratingNum === 0) rating = null;
-  const price = randNum(25, 800);
+  const price = randNum(25, 1200);
   const isPlus = plus();
 
   db.seed(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus, photo_url) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus}, "photo.jpg");`);

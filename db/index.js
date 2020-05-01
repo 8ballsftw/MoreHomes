@@ -9,6 +9,7 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+// only used for seeding the DB
 const seed = (q) => {
   connection.query(q, (err) => {
     if (err) throw err;
@@ -22,15 +23,17 @@ const getHomeInfo = (id, callback) => {
     if (err) {
       callback(err);
     } else {
-      // console.log(res[0].home_id);
       connection.query(`SELECT * FROM photo_info WHERE home_id = ${id}`, (err, succ) => {
         if (err) {
           callback(err);
         } else {
           const photos = [];
+          // iterate through the info returned from photo_info
           succ.forEach((photo) => {
+            // pull out the photo urls
             photos.push(photo.file_url);
           });
+          // add a photos property with the array of urls to the response object
           res[0].photos = photos;
           callback(null, res);
         }
