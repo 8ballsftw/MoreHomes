@@ -5,7 +5,7 @@ CREATE DATABASE home_data;
 USE home_data;
 
 CREATE TABLE home_info (
-  home_id int NOT NULL AUTO_INCREMENT,
+  home_id int NOT NULL,
   title VARCHAR(255),
   home_type VARCHAR(255),
   beds int,
@@ -13,6 +13,7 @@ CREATE TABLE home_info (
   rating_num int,
   price int,
   is_plus int,
+  photo_url VARCHAR(255),
   PRIMARY KEY (home_id)
 );
 

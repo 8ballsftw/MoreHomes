@@ -1,4 +1,6 @@
 const db = require('./db/index.js');
+const awsDB = require('./db/aws.js')
+// const photoSeed = require('./db/aws.js')
 /*
 weighted random:
 function weightedRandom(prob) {
@@ -24,7 +26,7 @@ let result = weightedRandom({0:0.6, 1:0.1, 2:0.1, 3:0.2}); //sums must add to 1
 */
 
 
-let seeder = () => {
+let seeder = (idx) => {
 
   let title = () => {
     let result = '';
@@ -57,7 +59,7 @@ let seeder = () => {
   let plus = () => {
     let rand = randNum(0, 2)
     if (rand === 1) {
-      if (Math.random() < .7) rand = 0;
+      if (Math.random() < .65) rand = 0;
     }
     return rand;
   }
@@ -65,12 +67,15 @@ let seeder = () => {
   let beds = randNum(1, 25);
   let rating = (randNum(275, 500) / 100);
   let ratingNum = randNum(0, 100);
+  if (ratingNum === 0) rating = null;
   let price = randNum(25, 800);
   let isPlus = plus();
 
-  db.seed(`INSERT INTO home_info (title, home_type, beds, rating, rating_num, price, is_plus) VALUES ("${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`)
+  db.seed(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus, photo_url) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus}, "photo.jpg");`)
 }
 
 for (var i = 0; i < 100; i++) {
-  seeder();
+  seeder(i + 1);
 }
+
+awsDB.photoSeed();
