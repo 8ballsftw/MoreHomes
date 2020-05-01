@@ -10,22 +10,23 @@ fs.readdir(photoDir, (err, folders) => {
   if (err) {
     console.log(err)
   } else {
-    let fileArr = []
     folders.shift()
     folders.map((folder, index) => {
-      let parent = index;
+      let parent = (index + 1).toString(); // zero-padding
+      if (parent.length === 1) {
+        parent = '00' + parent;
+      } else if (parent.length === 2) {
+        parent = '0' + parent;
+      }
       fs.readdir(photoDir + folder, (err, files) => {
         if (err) {
           console.log(err)
         } else {
-          if (files[0] !== '.DS_Store')
           files.forEach(file => {
-            if (file === '.DS_Store') {
-              null
-            } else {\
-              let currKey = `${parent}-${file}`
-              s3.upload({
-                Bucket: `airbnb-project-photos/testing/${parent}`,
+            if (file !== '.DS_Store') {
+              let currKey = `${parent}-${file.substring(0, 10)}`
+              s3.upload({ //params
+                Bucket: `airbnb-project-photos/${parent}`,
                 Key: currKey,
                 Body: fs.readFileSync(`${photoDir}${folder}/${file}`),
                 ContentType: 'image/jpeg',
@@ -34,7 +35,7 @@ fs.readdir(photoDir, (err, folders) => {
                 if (err) {
                   console.log(err)
                 } else {
-                  console.log(succ.Location)
+                  console.log(succ.Location) // active photo url
                 }
               })
             }
