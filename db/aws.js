@@ -17,13 +17,7 @@ const photoSeed = () => {
         folders.forEach((folder, index) => {
           // ignore .DS_Store
           if (folder !== '.DS_Store') {
-            // zero-padding
             let idx = (index + (i * 25));
-            // if (idx.length === 1) {
-            //   idx = `00${idx}`;
-            // } else if (idx.length === 2) {
-            //   idx = `0${idx}`;
-            // }
             fs.readdir(`${photoDir}/${folder}`, (err, files) => {
               if (err) {
                 throw err;

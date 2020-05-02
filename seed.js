@@ -40,7 +40,13 @@ const seeder = (idx) => {
   const price = randNum(25, 1200);
   const isPlus = plus();
 
-  db.seed(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`);
+  db.insertOne(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`, (err, succ) => {
+    if (err) {
+      throw err
+    } else {
+      console.log(succ);
+    }
+  });
 };
 
 for (let i = 0; i < 100; i += 1) {
