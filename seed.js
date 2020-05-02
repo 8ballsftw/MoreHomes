@@ -5,15 +5,12 @@ const seeder = (idx) => {
   const title = () => {
     let result = '';
     const adjectives = ['Luxurious', 'Captivating', 'Impeccable', 'Stainless', 'Basketball', 'Landscaped', 'Pergola', 'Remodeled', 'Beautiful', 'Gentle', 'Spotless', 'Tiled', 'Updated'];
-    const nouns = ['house', 'room', 'apartment', 'condo', 'condominium', 'townhouse', 'castle', 'masion', 'beach house', 'skihaus'];
+    const nouns = ['house', 'room', 'apartment', 'condo', 'condominium', 'townhouse', 'castle', 'mansion', 'beach house', 'fancy tent', 'skihaus'];
     const bonuses = ['pool', 'bbq', 'hot tub', 'tennis court', 'yard'];
     const selector = (arr) => {
       const rand = Math.floor(Math.random() * arr.length);
       if (arr[0] === 'pool') {
-        if (Math.random() < 0.75) {
-          return '';
-        }
-        return ` with a ${arr[rand]}`;
+        if (Math.random() > 0.75) return ` with a ${arr[rand]}`;
       }
       return arr[rand];
     };
@@ -43,7 +40,13 @@ const seeder = (idx) => {
   const price = randNum(25, 1200);
   const isPlus = plus();
 
-  db.seed(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus, photo_url) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus}, "photo.jpg");`);
+  db.insertOne(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`, (err, succ) => {
+    if (err) {
+      throw err
+    } else {
+      console.log(succ);
+    }
+  });
 };
 
 for (let i = 0; i < 100; i += 1) {

@@ -9,12 +9,9 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-// only used for seeding the DB
-const seed = (q) => {
-  connection.query(q, (err) => {
-    if (err) throw err;
-    console.log('success!');
-  });
+// takes a query, adds it to the the
+const insertOne = (q, callback) => {
+  connection.query(q, callback)
 };
 
 // getting the info for one home
@@ -22,6 +19,8 @@ const getHomeInfo = (id, callback) => {
   connection.query(`SELECT * FROM home_info WHERE home_id = ${id}`, (err, res) => {
     if (err) {
       callback(err);
+    } else if (res.length === 0) {
+      callback(res);
     } else {
       connection.query(`SELECT * FROM photo_info WHERE home_id = ${id}`, (err, succ) => {
         if (err) {
@@ -43,4 +42,4 @@ const getHomeInfo = (id, callback) => {
 };
 
 module.exports.getHomeInfo = getHomeInfo;
-module.exports.seed = seed;
+module.exports.insertOne = insertOne;
