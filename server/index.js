@@ -30,11 +30,9 @@ app.put('/init', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      res.status(201).send(data);
+      res.send(data);
     }
-  })
-
-  //res.status(200).send(req.body);
+  });
 });
 
 app.listen(port, () => console.log(`Ahoy cap't! Ready and Willing at port ${port}!!`));

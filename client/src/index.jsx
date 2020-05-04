@@ -9,6 +9,7 @@ class App extends React.Component {
     this.state = {
       homes: []
     }
+    this.onClick = this.onClick.bind(this);
   }
 
   componentDidMount() {
@@ -26,18 +27,36 @@ class App extends React.Component {
 
     axios(request)
       .then(res => {
-        console.log(res)
+        console.log(res.data)
+        this.setState ({
+          homes: res.data
+        })
       })
       .catch(err => console.log(err));
   }
 
+  onClick(e) {
+    console.log("clicked")
+    console.log(e)
+  }
+
   render() {
-    return (
-      <div>
-        <h1>App Component</h1>
-        <MainCarousel />
-      </div>
-    )
+    if (this.state.homes.length !== 0) {
+      console.log('arr there')
+      return (
+        <div>
+          <h1 onClick={(e)=>this.onClick(e)}>App Component</h1>
+          {this.state.homes.map((home, index) => (
+            <MainCarousel home={home} index={index + 1} key={index} clickHandler={this.onClick} />
+          ))}
+        </div>
+      )
+    } else {
+      console.log('arr not there')
+      return (
+        <div></div>
+      )
+    }
   }
 }
 

@@ -16,11 +16,11 @@ const insertOne = (q, callback) => {
 
 // getting the info for one home
 const getHomeInfo = (id, callback) => {
-  connection.query(`SELECT * FROM home_info WHERE home_id = ${id}`, (err, res) => {
+  connection.query(`SELECT * FROM home_info WHERE home_id = ${id}`, (err, response) => {
     if (err) {
       callback(err);
-    } else if (res.length === 0) {
-      callback(res);
+    } else if (response.length === 0) {
+      callback(response);
     } else {
       connection.query(`SELECT * FROM photo_info WHERE home_id = ${id}`, (err, succ) => {
         if (err) {
@@ -33,8 +33,8 @@ const getHomeInfo = (id, callback) => {
             photos.push(photo.file_url);
           });
           // add a photos property with the array of urls to the response object
-          res[0].photos = photos;
-          callback(null, res);
+          response[0].photos = photos;
+          callback(null, response);
         }
       });
     }
