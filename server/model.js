@@ -15,8 +15,8 @@ const db = require('../db/index.js');
 // };
 
 
-const initialize = (arr, callback) => {
-  arr = JSON.parse(arr);
+const initialize = (array, callback) => {
+  const arr = JSON.parse(array);
   const response = [];
   let responseCount = 0;
   // async mapping
@@ -26,7 +26,7 @@ const initialize = (arr, callback) => {
         callback(err);
       } else {
         response[index] = info[0];
-        responseCount++;
+        responseCount += 1;
         if (responseCount === arr.length) {
           callback(null, response);
         }

@@ -1,0 +1,44 @@
+.homes {
+  display: flex;
+  border: 1px solid #000000;
+  flex-direction: row;
+  justify-content: space-between;
+  width: auto;
+}
+
+.home {
+  display: flex;
+  width: 25%;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  background-color: lightgray;
+  align-items: center;
+}
+
+.left {
+  position: absolute;
+}
+
+.right {
+  float: right;
+  position: absolute;
+}
+
+.photo {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.rating {
+  float: right;
+}

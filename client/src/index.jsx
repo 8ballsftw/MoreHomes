@@ -10,10 +10,10 @@ class App extends React.Component {
       loaded: false,
       homes: [],
       photos: []
-      // homeId: 0
     }
     this.onLittleClick = this.onLittleClick.bind(this);
     this.onBigClick = this.onBigClick.bind(this);
+    this.onPhotoClick = this.onPhotoClick.bind(this);
   }
 
   componentDidMount() {
@@ -27,8 +27,6 @@ class App extends React.Component {
       }
     }
 
-    console.log(getArr)
-
     let request = {
       method: 'PUT',
       url : '/init',
@@ -37,7 +35,6 @@ class App extends React.Component {
 
     axios(request)
       .then(res => {
-        console.log(res.data)
         this.setState ({
           homes: res.data,
           photos: photoArr,
@@ -51,7 +48,6 @@ class App extends React.Component {
   onLittleClick(e) {
     let target = e.target.value.split(' ')
     let photoArr = this.state.photos;
-    console.log(photoArr);
     let length = this.state.homes[target[1]].photos.length - 1;
     if (target[0] === 'right') {
       photoArr[target[1]] = Math.min(length, photoArr[target[1]] + 1);
@@ -66,9 +62,7 @@ class App extends React.Component {
   onBigClick(e) {
     let value = e.target.value;
     let idx = this.state.homeId;
-    let length = this.state.homes.length - 1;
-    console.log(this.state.homeId)
-    console.log(Math.min(length, idx + 1))
+    let length = this.state.homes.length - 3;
     if (value === "bigRight") {
       idx = Math.min(length, idx + 1)
     } else {
@@ -79,16 +73,23 @@ class App extends React.Component {
     })
   }
 
+  onPhotoClick() {
+    console.log(`takes me to that property's page`)
+    // this.componentDidMount()
+  }
+
   render() {
     return (
       <div>
-        <h1>App Component</h1>
+        <h1>More homes you may like</h1>
         <MainCarousel
           homes={this.state.homes}
           photos={this.state.photos}
           homeId={this.state.homeId}
           bigClickHandler={this.onBigClick}
-          littleClickHandler={this.onLittleClick} />
+          littleClickHandler={this.onLittleClick}
+          photoClickHandler={this.onPhotoClick}
+        />
       </div>
     )
   }

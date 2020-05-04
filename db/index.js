@@ -11,7 +11,7 @@ connection.connect();
 
 // takes a query, adds it to the the
 const insertOne = (q, callback) => {
-  connection.query(q, callback)
+  connection.query(q, callback);
 };
 
 // getting the info for one home
