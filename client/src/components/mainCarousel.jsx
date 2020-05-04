@@ -1,13 +1,23 @@
 import React from 'react'
 import Photo from './photo.jsx'
 
-const MainCarousel = ({home, index, clickHandler}) => {
-  let i = 0;
+const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandler}) => {
+  let highlightedHomes = [];
+  for (var i = homeId; i < homeId + 3; i++) {
+    highlightedHomes.push([homes[i], photos[i]])
+  }
   return (
-    <div onClick={()=>{i++}}>
-      {index}
-      <img src={home.photos[i]} alt="yolo" height="150"/>
-      <Photo />
+    <div>
+      <button value="bigLeft" onClick={(e) => bigClickHandler(e)}>Big Left</button>
+        {highlightedHomes.map((home, index) => (
+          <Photo
+            home={home[0]}
+            index={index + homeId + 1}
+            key={index}
+            photo={home[1]}
+            clickHandler={littleClickHandler}/>
+        ))}
+      <button value="bigRight" onClick={(e) => bigClickHandler(e)}>Big Right</button>
     </div>
   )
 }
