@@ -7,6 +7,8 @@ const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
 const photoDir = path.join(__dirname, '../homePhotos');
 
+
+//this is only for the initial photoseed, but it would be good to change it to a promise chain
 const photoSeed = () => {
   fs.readdir(photoDir, (err, folders) => {
     if (err) {
