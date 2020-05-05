@@ -10,4 +10,4 @@ const Photo = ({home, index, photo, clickHandler, photoClickHandler}) => (
   </span>
 )
 
-export default Photo
+export default Photo;

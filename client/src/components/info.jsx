@@ -9,4 +9,4 @@ const Info = ({home}) => (
   </span>
 )
 
-export default Info
+export default Info;

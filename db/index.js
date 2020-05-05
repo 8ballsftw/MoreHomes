@@ -9,12 +9,13 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-// takes a query, adds it to the the
+// would like to split this out into a few different functions
 const insertOne = (q, callback) => {
   connection.query(q, callback);
 };
 
 // getting the info for one home
+// ideally would refactor this to a promise chain
 const getHomeInfo = (id, callback) => {
   connection.query(`SELECT * FROM home_info WHERE home_id = ${id}`, (err, response) => {
     if (err) {
