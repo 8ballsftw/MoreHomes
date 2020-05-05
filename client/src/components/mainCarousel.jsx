@@ -10,7 +10,7 @@ const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandle
   return (
     <div>
       <span className="homes">
-      <button value="bigLeft" onClick={(e) => bigClickHandler(e)}>Big Left</button>
+      <button value="bigLeft" onClick={(e) => bigClickHandler(e)}>{"<"}</button>
         {highlightedHomes.map((home, index) => (
           <span className="home">
             <Photo
@@ -29,7 +29,7 @@ const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandle
             </div>
           </span>
         ))}
-      <button value="bigRight" onClick={(e) => bigClickHandler(e)}>Big Right</button>
+      <button value="bigRight" onClick={(e) => bigClickHandler(e)}>{">"}</button>
       </span>
     </div>
   )

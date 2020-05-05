@@ -7,7 +7,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
       homes: [],
       photos: []
     }
@@ -46,13 +45,23 @@ class App extends React.Component {
   }
 
   onLittleClick(e) {
+    // splits the return into "direction" and "index"
     let target = e.target.value.split(' ')
     let photoArr = this.state.photos;
+    // length of the photo array
     let length = this.state.homes[target[1]].photos.length - 1;
     if (target[0] === 'right') {
-      photoArr[target[1]] = Math.min(length, photoArr[target[1]] + 1);
+      photoArr[target[1]] === length
+        ? photoArr[target[1]] = 0
+        : photoArr[target[1]]++
+
+      // photoArr[target[1]] = Math.min(length, photoArr[target[1]] + 1);
     } else if (target[0] === 'left') {
-      photoArr[target[1]] = Math.max(0, photoArr[target[1]] - 1);
+      photoArr[target[1]] === 0
+        ? photoArr[target[1]] = length
+        : photoArr[target[1]]--
+
+      // photoArr[target[1]] = Math.max(0, photoArr[target[1]] - 1);
     }
     this.setState({
       photos: photoArr
@@ -75,7 +84,6 @@ class App extends React.Component {
 
   onPhotoClick() {
     console.log(`takes me to that property's page`)
-    // this.componentDidMount()
   }
 
   render() {
