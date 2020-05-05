@@ -21,14 +21,14 @@
   align-items: center;
 }
 
-.left {
+/* .left {
   position: absolute;
 }
 
 .right {
   float: right;
   position: absolute;
-}
+} */
 
 .photo {
   position: relative;
