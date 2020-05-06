@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainCarousel from './components/mainCarousel.jsx'
+import MainCarousel from './components/mainCarousel.jsx';
+import styled from 'styled-components';
 const axios = require('axios');
+
+// const AppWrapper = styl
 
 class App extends React.Component {
   constructor(props) {

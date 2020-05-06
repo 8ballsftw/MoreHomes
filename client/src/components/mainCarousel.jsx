@@ -1,6 +1,6 @@
-import React from 'react'
-import Photo from './photo.jsx'
-import Info from './info.jsx'
+import React from 'react';
+import Photo from './photo.jsx';
+import Info from './info.jsx';
 
 const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandler, photoClickHandler}) => {
   let highlightedHomes = [];
@@ -21,12 +21,10 @@ const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandle
               clickHandler={littleClickHandler}
               photoClickHandler={photoClickHandler}
             />
-            <div>
-              <Info
-                home={home[0]}
-                key={index}
-                />
-            </div>
+            <Info
+              home={home[0]}
+              key={index}
+              />
           </span>
         ))}
       <button value="bigRight" onClick={(e) => bigClickHandler(e)}>{">"}</button>
