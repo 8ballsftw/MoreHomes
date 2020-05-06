@@ -1,6 +1,27 @@
-import React from 'react'
-import Photo from './photo.jsx'
-import Info from './info.jsx'
+import React from 'react';
+import Photo from './photo.jsx';
+import Info from './info.jsx';
+import styled from 'styled-components';
+
+const CarouselWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: auto;
+`
+
+const ButtonWrapper = styled.div`
+  background: transparent;
+  font-size: 200%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  height: 195px;
+`
+
+const HomeWrapper = styled.div`
+
+`
 
 const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandler, photoClickHandler}) => {
   let highlightedHomes = [];
@@ -9,8 +30,8 @@ const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandle
   }
   return (
     <div>
-      <span className="homes">
-      <button value="bigLeft" onClick={(e) => bigClickHandler(e)}>Big Left</button>
+      <CarouselWrapper>
+      <ButtonWrapper value="bigLeft" onClick={(e) => bigClickHandler(e)}>{"<"}</ButtonWrapper>
         {highlightedHomes.map((home, index) => (
           <span className="home">
             <Photo
@@ -21,16 +42,14 @@ const MainCarousel = ({homes, photos, homeId, bigClickHandler, littleClickHandle
               clickHandler={littleClickHandler}
               photoClickHandler={photoClickHandler}
             />
-            <div>
-              <Info
-                home={home[0]}
-                key={index}
-                />
-            </div>
+            <Info
+              home={home[0]}
+              key={index + 0.5}
+              />
           </span>
         ))}
-      <button value="bigRight" onClick={(e) => bigClickHandler(e)}>Big Right</button>
-      </span>
+      <ButtonWrapper value="bigRight" onClick={(e) => bigClickHandler(e)}>{">"}</ButtonWrapper>
+      </CarouselWrapper>
     </div>
   )
 }

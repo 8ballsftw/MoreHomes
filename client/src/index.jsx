@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainCarousel from './components/mainCarousel.jsx'
+import MainCarousel from './components/mainCarousel.jsx';
+import styled from 'styled-components';
 const axios = require('axios');
+
+const HeadingWrapper = styled.div`
+  position: relative;
+  left: 15%;
+`
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
       homes: [],
       photos: []
     }
@@ -46,13 +51,19 @@ class App extends React.Component {
   }
 
   onLittleClick(e) {
+    // splits the return into "direction" and "index"
     let target = e.target.value.split(' ')
     let photoArr = this.state.photos;
+    // length of the photo array
     let length = this.state.homes[target[1]].photos.length - 1;
     if (target[0] === 'right') {
-      photoArr[target[1]] = Math.min(length, photoArr[target[1]] + 1);
+      photoArr[target[1]] === length
+        ? photoArr[target[1]] = 0
+        : photoArr[target[1]]++;
     } else if (target[0] === 'left') {
-      photoArr[target[1]] = Math.max(0, photoArr[target[1]] - 1);
+      photoArr[target[1]] === 0
+        ? photoArr[target[1]] = length
+        : photoArr[target[1]]--;
     }
     this.setState({
       photos: photoArr
@@ -61,12 +72,13 @@ class App extends React.Component {
 
   onBigClick(e) {
     let value = e.target.value;
+    console.log(e.target.value);
     let idx = this.state.homeId;
     let length = this.state.homes.length - 3;
     if (value === "bigRight") {
-      idx = Math.min(length, idx + 1)
+      idx = Math.min(length, idx + 1);
     } else {
-      idx = Math.max(0, idx - 1)
+      idx = Math.max(0, idx - 1);
     }
     this.setState({
       homeId: idx
@@ -75,13 +87,14 @@ class App extends React.Component {
 
   onPhotoClick() {
     console.log(`takes me to that property's page`)
-    // this.componentDidMount()
   }
 
   render() {
     return (
       <div>
-        <h1>More homes you may like</h1>
+        <HeadingWrapper>
+          <h2>More homes you may like</h2>
+        </HeadingWrapper>
         <MainCarousel
           homes={this.state.homes}
           photos={this.state.photos}

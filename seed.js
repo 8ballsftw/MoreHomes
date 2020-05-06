@@ -4,7 +4,7 @@ const awsDB = require('./db/aws.js');
 const seeder = (idx) => {
   const title = () => {
     let result = '';
-    const adjectives = ['Luxurious', 'Captivating', 'Impeccable', 'Stainless', 'Basketball', 'Landscaped', 'Pergola', 'Remodeled', 'Beautiful', 'Gentle', 'Spotless', 'Tiled', 'Updated'];
+    const adjectives = ['Luxurious', 'Captivating', 'Impeccable', 'Stainless', 'Basketball', 'Landscaped', 'Pergola', 'Remodeled', 'Beautiful', 'Gentle', 'Spotless', 'Tiled', 'Updated', 'Best', 'Huge', 'Luxury'];
     const nouns = ['house', 'room', 'apartment', 'condo', 'condominium', 'townhouse', 'castle', 'mansion', 'beach house', 'fancy tent', 'skihaus'];
     const bonuses = ['pool', 'bbq', 'hot tub', 'tennis court', 'yard'];
     const selector = (arr) => {
@@ -19,7 +19,7 @@ const seeder = (idx) => {
   };
 
   const type = () => {
-    const arr = ['entire house', 'entire bungalow', 'entire apartment', 'entire condominium', 'entire townhouse', 'entire guest suite', 'tiny house', 'private room', 'shared room'];
+    const arr = ['Entire house', 'Entire bungalow', 'Entire apartment', 'Entire condominium', 'Entire townhouse', 'Entire guest suite', 'Tiny house', 'Private room', 'Shared room'];
     return arr[Math.floor(Math.random() * arr.length)];
   };
 
@@ -51,6 +51,6 @@ const seeder = (idx) => {
 
 for (let i = 0; i < 100; i += 1) {
   seeder(i + 1);
-}
+};
 
 awsDB.photoSeed();
