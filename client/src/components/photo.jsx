@@ -13,7 +13,7 @@ const PhotoButton = styled.button`
   background: white;
   height: 30px;
   width: 30px;
-  box-shadow: 1px 2px 1px darkgrey;
+  box-shadow: 1px 1px 1px darkgrey;
 `
 
 const ButtonWrapper = styled.div`
