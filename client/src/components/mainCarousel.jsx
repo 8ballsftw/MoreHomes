@@ -32,7 +32,7 @@ const Button = styled.button`
 const MainCarousel = (props) => {
   let highlightedHomes = [];
   for (var i = props.homeId; i < props.homeId + 3; i++) {
-    highlightedHomes.push([props.homes[i], props.photos[i]])
+    highlightedHomes.push([props.homes[i], props.photos[i], props.hearts[i]])
   }
   return (
     <CarouselWrapper value={"Carousel"}>
@@ -46,8 +46,9 @@ const MainCarousel = (props) => {
           home={home[0]}
           index={index + props.homeId + 1}
           photo={home[1]}
+          heart={home[2]}
           hovered={props.hovered === index + props.homeId + 1 ? true : false}
-          clickHandler={props.littleClickHandler}
+          arrowClickHandler={props.littleClickHandler}
           photoClickHandler={props.photoClickHandler}
           photoHoverHandler={props.photoHoverHandler}
           heartClickHandler={props.heartClickHandler}

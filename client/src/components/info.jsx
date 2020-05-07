@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const InfoWrapper = styled.div`
+  line-height: 20px;
+  max-height: 20px;
   width: 100%;
 `;
 
@@ -11,8 +13,9 @@ const LineOneWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  font-weight: 100;
+  font-weight: 200;
   font-color: darkgrey;
+  font-size: 14px;
 `;
 
 const TypeWrapper = styled.div`
@@ -40,7 +43,7 @@ const LineThreeWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-
+  padding-top: 2%;
   line-height: 20px;
   max-height: 20px;
   overflow: hidden;
@@ -49,8 +52,11 @@ const LineThreeWrapper = styled.div`
 `
 
 const Price = styled.div`
-  font-weight: 700;
+  font-weight: 600;
   padding-right: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 const Rating = styled.div`
@@ -79,11 +85,11 @@ const Info = ({home}) => (
       </RatingWrapper>
     </LineOneWrapper>
     <LineTwoWrapper className="lineTwo">
-      <div>{`${home.title}`}</div>
+      {`${home.title}`}
     </LineTwoWrapper>
     <LineThreeWrapper className="lineThree">
       <Price className="price">{`$${home.price} `}</Price>
-      <div>{`  / night`}</div>
+      {`  / night`}
     </LineThreeWrapper>
   </InfoWrapper>
 )

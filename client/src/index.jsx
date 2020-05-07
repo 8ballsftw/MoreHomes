@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MainCarousel from './components/mainCarousel.jsx';
 import styled from 'styled-components';
-import { GlobalStyle } from './theme/globalStyle.js';
 
 const axios = require('axios');
 
+const BodyWrapper = styled.div`
+  font-family: 'Montserrat', sans-serif;
+`
 
 const HeadingWrapper = styled.div`
   position: relative;
-  left: 14%;
+  left: 13.5%;
 `
 
 class App extends React.Component {
@@ -18,6 +20,7 @@ class App extends React.Component {
     this.state = {
       homes: [],
       photos: [],
+      hearts: [],
       leftButton: false,
       rightButton: true,
       hovered: null,
@@ -31,12 +34,14 @@ class App extends React.Component {
 
   componentDidMount() {
     let getArr = [];
-    let photoArr = [];
+    let zeroArr = [];
+    let boolArr = [];
     while (getArr.length < 12) {
       let rand = Math.floor(Math.random() * 100) + 1;
       if (getArr.indexOf(rand) === -1) {
         getArr.push(rand);
-        photoArr.push(0);
+        zeroArr.push(0);
+        boolArr.push(false);
       }
     }
     let request = {
@@ -48,7 +53,8 @@ class App extends React.Component {
       .then(res => {
         this.setState ({
           homes: res.data,
-          photos: photoArr,
+          photos: zeroArr,
+          hearts: boolArr,
           homeId: 0
         })
       })
@@ -56,16 +62,17 @@ class App extends React.Component {
   }
 
   onHeartClick(e) {
-    console.log('heart click')
-    console.log(e.target.value)
-    // let element = document.getElementById(e.target.value.id)
-    // console.log(element);
-    // e.scroll(0,0)
+    let className = e.target.className.split(' ');
+    let id = className[className.length - 1];
+
+    let heartArr = this.state.hearts;
+    heartArr[id] = !heartArr[id];
+    this.setState({hearts: heartArr});
   }
 
   onLittleClick(e) {
     // splits the return into "direction" and "index"
-    let target = e.target.value.split(' ')
+    let target = e.target.value.split(' ');
     let photoArr = this.state.photos;
     // length of the photo array
     let length = this.state.homes[target[1]].photos.length - 1;
@@ -109,20 +116,22 @@ class App extends React.Component {
   }
 
   onPhotoHover(e, bool) {
-    bool ? this.setState({hovered: e}) : this.setState({hovered: null})
+    bool
+      ? this.setState({hovered: e})
+      : this.setState({hovered: null})
   }
 
   render() {
     if (this.state.homes.length === 0) return <div></div>
     return (
-      <div>
-        <GlobalStyle />
+      <BodyWrapper>
         <HeadingWrapper>
           <h2>More homes you may like</h2>
         </HeadingWrapper>
         <MainCarousel
           homes={this.state.homes}
           photos={this.state.photos}
+          hearts={this.state.hearts}
           homeId={this.state.homeId}
           leftButton={this.state.leftButton}
           rightButton={this.state.rightButton}
@@ -133,7 +142,7 @@ class App extends React.Component {
           photoHoverHandler={this.onPhotoHover}
           heartClickHandler={this.onHeartClick}
         />
-      </div>
+      </BodyWrapper>
     )
   }
 }

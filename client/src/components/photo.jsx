@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import heart from '../../../public/site media/heart.png';
-
-
+import Heart from './heart.jsx'
+import LittleArrows from './littleArrows.jsx'
 
 const ArrowWrapper = styled.div`
   background: transparent;
@@ -10,17 +9,6 @@ const ArrowWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-`;
-
-const HeartWrapper = styled.div`
-  background: transparent;
-
-  width: 95%;
-  height: 95%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
   position: absolute;
 `;
 
@@ -33,7 +21,7 @@ const PhotoWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
   transition-duration: 1s;
   transition-timing-function: ease-out;
 `;
@@ -42,10 +30,6 @@ const PhotoImg = styled.img`
   border-radius: 6px;
   height: 200px;
   width: 100%;
-`;
-
-const HeartImg = styled.img `
-
 `;
 
 const Button = styled.button`
@@ -67,29 +51,14 @@ const Button = styled.button`
 `;
 
 
-const Photo = ({home, index, photo, hovered, clickHandler, photoClickHandler, photoHoverHandler, heartClickHandler}) => (
+const Photo = ({ home, index, photo, heart, hovered, arrowClickHandler, photoClickHandler, photoHoverHandler, heartClickHandler }) => (
   <PhotoWrapper
     className="photoWrapper"
     onMouseEnter={() => photoHoverHandler(index, true)}
     onMouseLeave={() => photoHoverHandler(index, false)}
   >
-    <HeartWrapper>
-    {hovered
-      ? <Button id={`heart ${index}`} className="heartButton" value={"heart " + (index - 1).toString()} onClick={(e) => {heartClickHandler(e)}}>
-        <img src={heart} alt="heart" height="16px" width="16px" left="16px"/>
-        </Button>
-      : <div></div>}
-    </HeartWrapper>
-
-    <ArrowWrapper className="littleArrowWrapper">
-      {hovered
-        ? <Button className="leftButton" value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}>{"<"}</Button>
-        : <div></div>}
-      {hovered
-        ? <Button className="rightButton" value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}>{">"}</Button>
-        : <div></div>}
-    </ArrowWrapper>
-
+    <Heart heart={heart} index={index} hovered={hovered} clickHandler={heartClickHandler}/>
+    <LittleArrows index={index} hovered={hovered} clickHandler={arrowClickHandler} />
     <PhotoImg className="homePhoto" src={home.photos[photo]} alt={home.title} onClick={() => photoClickHandler()}/>
 
     {/* <code>{`${photo} - ${index}`}</code> */}

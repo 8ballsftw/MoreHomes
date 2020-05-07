@@ -18,10 +18,11 @@ const Entry = (props) => {
       <Photo
         home={props.home}
         index={props.index}
-        // key={index}
         photo={props.photo}
+        heart={props.heart}
         hovered={props.hovered}
-        clickHandler={props.clickHandler}
+        // hovered={true}
+        arrowClickHandler={props.arrowClickHandler}
         photoClickHandler={props.photoClickHandler}
         photoHoverHandler={props.photoHoverHandler}
         heartClickHandler={props.heartClickHandler}
