@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import heart from '../../../public/site media/heart.png';
+import heart from '../../../public/site media/heart.png';
 
 
 
@@ -44,6 +44,10 @@ const PhotoImg = styled.img`
   width: 100%;
 `;
 
+const HeartImg = styled.img `
+
+`;
+
 const Button = styled.button`
   border-radius: 100%;
   text-align: center;
@@ -63,19 +67,27 @@ const Button = styled.button`
 `;
 
 
-const Photo = ({home, index, photo, hovered, clickHandler, photoClickHandler, photoHoverHandler}) => (
+const Photo = ({home, index, photo, hovered, clickHandler, photoClickHandler, photoHoverHandler, heartClickHandler}) => (
   <PhotoWrapper
     className="photoWrapper"
     onMouseEnter={() => photoHoverHandler(index, true)}
     onMouseLeave={() => photoHoverHandler(index, false)}
   >
     <HeartWrapper>
-    {hovered ? <Button className="heartButton" value={"heart " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}>h</Button>  : <div></div>}
+    {hovered
+      ? <Button id={`heart ${index}`} className="heartButton" value={"heart " + (index - 1).toString()} onClick={(e) => {heartClickHandler(e)}}>
+        <img src={heart} alt="heart" height="16px" width="16px" left="16px"/>
+        </Button>
+      : <div></div>}
     </HeartWrapper>
 
     <ArrowWrapper className="littleArrowWrapper">
-      {hovered ? <Button className="leftButton" value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}>{"<"}</Button> : <div></div>}
-      {hovered ? <Button className="rightButton" value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}>{">"}</Button>  : <div></div>}
+      {hovered
+        ? <Button className="leftButton" value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}>{"<"}</Button>
+        : <div></div>}
+      {hovered
+        ? <Button className="rightButton" value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}>{">"}</Button>
+        : <div></div>}
     </ArrowWrapper>
 
     <PhotoImg className="homePhoto" src={home.photos[photo]} alt={home.title} onClick={() => photoClickHandler()}/>

@@ -23,6 +23,7 @@ class App extends React.Component {
     this.onBigClick = this.onBigClick.bind(this);
     this.onPhotoClick = this.onPhotoClick.bind(this);
     this.onPhotoHover = this.onPhotoHover.bind(this);
+    this.onHeartClick = this.onHeartClick.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,14 @@ class App extends React.Component {
         })
       })
       .catch(err => console.log(err));
+  }
+
+  onHeartClick(e) {
+    console.log('heart click')
+    console.log(e.target.value)
+    // let element = document.getElementById(e.target.value.id)
+    // console.log(element);
+    // e.scroll(0,0)
   }
 
   onLittleClick(e) {
@@ -101,6 +110,7 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.state.homes.length === 0) return <div>Loading!</div>
     return (
       <div>
         <HeadingWrapper>
@@ -117,6 +127,7 @@ class App extends React.Component {
           littleClickHandler={this.onLittleClick}
           photoClickHandler={this.onPhotoClick}
           photoHoverHandler={this.onPhotoHover}
+          heartClickHandler={this.onHeartClick}
         />
       </div>
     )

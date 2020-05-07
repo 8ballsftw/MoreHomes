@@ -1,6 +1,5 @@
 import React from 'react';
-import Photo from './photo.jsx';
-import Info from './info.jsx';
+import Entry from './entry.jsx';
 import styled from 'styled-components';
 
 const CarouselWrapper = styled.div`
@@ -30,47 +29,29 @@ const Button = styled.button`
   }
 `;
 
-const HomeWrapper = styled.span`
-  display: flex;
-  padding: 1%;
-  width: 23%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-`;
-
-const MainCarousel = ({homes, photos, homeId, leftButton, rightButton, hovered, bigClickHandler, littleClickHandler, photoClickHandler, photoHoverHandler}) => {
-
+const MainCarousel = (props) => {
   let highlightedHomes = [];
-  for (var i = homeId; i < homeId + 3; i++) {
-    highlightedHomes.push([homes[i], photos[i]])
+  for (var i = props.homeId; i < props.homeId + 3; i++) {
+    highlightedHomes.push([props.homes[i], props.photos[i]])
   }
   return (
     <CarouselWrapper value={"Carousel"}>
       <ButtonWrapper>
-        <Button value={"bigLeft"} onClick={(e) => bigClickHandler(e)}>{leftButton ? "<" : ""}</Button>
-        <Button active={rightButton} value={"bigRight"} onClick={(e) => bigClickHandler(e)}>{rightButton ? ">" : ""}</Button>
+        <Button value={"bigLeft"} onClick={(e) => props.bigClickHandler(e)}>{props.leftButton ? "<" : ""}</Button>
+        <Button value={"bigRight"} onClick={(e) => props.bigClickHandler(e)}>{props.rightButton ? ">" : ""}</Button>
       </ButtonWrapper>
       {highlightedHomes.map((home, index) => (
-        <HomeWrapper>
-          <Photo
-            home={home[0]}
-            index={index + homeId + 1}
-            key={index}
-            photo={home[1]}
-            hovered={hovered === index + homeId + 1 ? true : false}
-            // hovered={true}
-            clickHandler={littleClickHandler}
-            photoClickHandler={photoClickHandler}
-            photoHoverHandler={photoHoverHandler}
-          />
-          <Info
-            home={home[0]}
-            key={index + homeId + 100}
-            />
-            {/* {`${home[1]} - ${index + homeId + 1}`} */}
-        </HomeWrapper>
+        <Entry
+          key={index}
+          home={home[0]}
+          index={index + props.homeId + 1}
+          photo={home[1]}
+          hovered={props.hovered === index + props.homeId + 1 ? true : false}
+          clickHandler={props.littleClickHandler}
+          photoClickHandler={props.photoClickHandler}
+          photoHoverHandler={props.photoHoverHandler}
+          heartClickHandler={props.heartClickHandler}
+        />
       ))}
     </CarouselWrapper>
   )
