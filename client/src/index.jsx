@@ -6,7 +6,7 @@ const axios = require('axios');
 
 const HeadingWrapper = styled.div`
   position: relative;
-  left: 15%;
+  left: 14%;
 `
 
 class App extends React.Component {
@@ -14,11 +14,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       homes: [],
-      photos: []
+      photos: [],
+      leftButton: false,
+      rightButton: true,
+      hovered: null,
     }
     this.onLittleClick = this.onLittleClick.bind(this);
     this.onBigClick = this.onBigClick.bind(this);
     this.onPhotoClick = this.onPhotoClick.bind(this);
+    this.onPhotoHover = this.onPhotoHover.bind(this);
   }
 
   componentDidMount() {
@@ -31,20 +35,17 @@ class App extends React.Component {
         photoArr.push(0);
       }
     }
-
     let request = {
       method: 'PUT',
       url : '/init',
       data: {id: JSON.stringify(getArr)}
     }
-
     axios(request)
       .then(res => {
         this.setState ({
           homes: res.data,
           photos: photoArr,
-          homeId: 0,
-          loaded: true
+          homeId: 0
         })
       })
       .catch(err => console.log(err));
@@ -72,21 +73,31 @@ class App extends React.Component {
 
   onBigClick(e) {
     let value = e.target.value;
-    console.log(e.target.value);
     let idx = this.state.homeId;
     let length = this.state.homes.length - 3;
-    if (value === "bigRight") {
-      idx = Math.min(length, idx + 1);
-    } else {
-      idx = Math.max(0, idx - 1);
-    }
+
+    value === "bigRight"
+      ? idx = Math.min(length, idx + 1)
+      : idx = Math.max(0, idx - 1);
+
+    let left = this.state.leftButton;
+    let right = this.state.rightButton;
+    idx === 0 ? left = false : left = true;
+    idx === length ? right = false : right = true;
+
     this.setState({
-      homeId: idx
+      homeId: idx,
+      leftButton: left,
+      rightButton: right
     })
   }
 
   onPhotoClick() {
     console.log(`takes me to that property's page`)
+  }
+
+  onPhotoHover(e, bool) {
+    bool ? this.setState({hovered: e}) : this.setState({hovered: null})
   }
 
   render() {
@@ -99,9 +110,13 @@ class App extends React.Component {
           homes={this.state.homes}
           photos={this.state.photos}
           homeId={this.state.homeId}
+          leftButton={this.state.leftButton}
+          rightButton={this.state.rightButton}
+          hovered={this.state.hovered}
           bigClickHandler={this.onBigClick}
           littleClickHandler={this.onLittleClick}
           photoClickHandler={this.onPhotoClick}
+          photoHoverHandler={this.onPhotoHover}
         />
       </div>
     )
