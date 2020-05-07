@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MainCarousel from './components/mainCarousel.jsx';
 import styled from 'styled-components';
+import { GlobalStyle } from './theme/globalStyle.js';
+
 const axios = require('axios');
+
 
 const HeadingWrapper = styled.div`
   position: relative;
@@ -110,9 +113,10 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.homes.length === 0) return <div>Loading!</div>
+    if (this.state.homes.length === 0) return <div></div>
     return (
       <div>
+        <GlobalStyle />
         <HeadingWrapper>
           <h2>More homes you may like</h2>
         </HeadingWrapper>
