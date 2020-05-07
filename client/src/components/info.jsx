@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const InfoWrapper = styled.div`
   width: 100%;
-`
+`;
 
 const LineOneWrapper = styled.div`
   display: flex;
@@ -12,21 +12,40 @@ const LineOneWrapper = styled.div`
   align-items: center;
   width: 100%;
   font-weight: 100;
-`
+  font-color: darkgrey;
+`;
 
-
+const TypeWrapper = styled.div`
+  line-height: 20px;
+  max-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
 
 const LineTwoWrapper = styled.div`
   display: flex
   justify-content: flex-start;
   font-weight: 300;
   font-size: 110%;
+
+  line-height: 20px;
+  max-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 const LineThreeWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
+
+  line-height: 20px;
+  max-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 const Price = styled.div`
@@ -37,9 +56,10 @@ const Price = styled.div`
 const Rating = styled.div`
   padding: 3px;
   font-weight: 500;
+  font-color: black;
 `
 
-const RatingBlock = styled.div`
+const RatingWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,19 +68,21 @@ const RatingBlock = styled.div`
 
 const Info = ({home}) => (
   <InfoWrapper>
-    <LineOneWrapper>
-      <div>{`${home.home_type} · ${home.beds} beds`}</div>
-      <RatingBlock>
+    <LineOneWrapper className="lineOne">
+      <TypeWrapper>
+        {`${home.home_type} · ${home.beds} beds`}
+      </TypeWrapper>
+      <RatingWrapper className="ratingWrapper">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Red_star.svg/252px-Red_star.svg.png" alt="red star" height="13" width="13"/>
-        <Rating>{home.rating}</Rating>
+        <Rating className="rating">{home.rating}</Rating>
         {` (${home.rating_num})`}
-      </RatingBlock>
+      </RatingWrapper>
     </LineOneWrapper>
-    <LineTwoWrapper>
+    <LineTwoWrapper className="lineTwo">
       <div>{`${home.title}`}</div>
     </LineTwoWrapper>
-    <LineThreeWrapper>
-      <Price>{`$${home.price} `}</Price>
+    <LineThreeWrapper className="lineThree">
+      <Price className="price">{`$${home.price} `}</Price>
       <div>{`  / night`}</div>
     </LineThreeWrapper>
   </InfoWrapper>
