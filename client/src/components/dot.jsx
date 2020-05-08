@@ -13,18 +13,8 @@ margin: ${props => props.small ? "3px" : "2px"};
 opacity: 0.65;
 `
 
-
-
 const Dot = ({ small, selected }) => {
   return (
-    // <DotStyle style={(selected && small)
-    //                   ? {background: 'lightgrey', minHeight: '6px', minWidth: '6px', maxHeight: '6px', maxWidth: '6px', margin: '4px'}
-    //                   : small
-    //                     ? {minHeight: '6px', minWidth: '6px', maxHeight: '6px', maxWidth: '6px', margin: '4px'}
-    //                     : selected
-    //                       ? {background: 'white'}
-    //                       : {}} />
-
     <DotStyle small={small} selected={selected} />
   );
 }

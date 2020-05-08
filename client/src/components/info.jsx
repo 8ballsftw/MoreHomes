@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import star from '../../../public/site media/Red_star.svg';
+import plus from '../../../public/site media/plus.png'
+import plusStar from '../../../public/site media/Plus_star.svg';
+
 
 const InfoWrapper = styled.div`
   line-height: 20px;
@@ -16,11 +19,14 @@ const LineOneWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 14px;
+  color: #707070;
 `;
 
 const TypeWrapper = styled.div`
+  padding-left: 0px;
+  margin-left: 0px;
   line-height: 20px;
   max-height: 20px;
   overflow: hidden;
@@ -63,23 +69,31 @@ const Price = styled.div`
 const Rating = styled.div`
   padding: 3px;
   font-weight: 500;
+  color: black;
 `
 
 const RatingWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
 `
+
+const Plus = styled.img`
+  height: 17px;
+  padding-right: -10px;
+`;
 
 
 const Info = ({home}) => (
   <InfoWrapper>
     <LineOneWrapper className="lineOne">
+      {home.is_plus ? <Plus src={plus} alt="plus" /> : null}
       <TypeWrapper>
         {`${home.home_type} · ${home.beds} beds`}
       </TypeWrapper>
       <RatingWrapper className="ratingWrapper">
-        <img src={star} alt="red star" height="13" width="13"/>
+        <img src={home.is_plus ? plusStar : star} alt="star" height="13" width="13"/>
         <Rating className="rating">{home.rating}</Rating>
         {` (${home.rating_num})`}
       </RatingWrapper>

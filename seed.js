@@ -28,7 +28,7 @@ const seeder = (idx) => {
   const plus = () => {
     let rand = randNum(0, 2);
     if (rand === 1) {
-      if (Math.random() < 0.65) rand = 0;
+      if (Math.random() < 0.75) rand = 0;
     }
     return rand;
   };

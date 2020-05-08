@@ -75,27 +75,27 @@ class App extends React.Component {
 
   onLittleClick(e) {
     // splits the return into "direction" and "index"
-    let target = e.target.value.split(' ');
+    let target = e.target.className.split(' ');
     let photoArr = this.state.photos;
     // length of the photo array
-    let length = this.state.homes[target[1]].photos.length - 1;
-    if (target[0] === 'right') {
-      photoArr[target[1]] === length
-        ? photoArr[target[1]] = 0
-        : photoArr[target[1]]++;
-    } else if (target[0] === 'left') {
-      photoArr[target[1]] === 0
-        ? photoArr[target[1]] = length
-        : photoArr[target[1]]--;
+    let length = this.state.homes[target[3]].photos.length - 1;
+    if (target[2] === 'right') {
+      photoArr[target[3]] === length
+        ? photoArr[target[3]] = 0
+        : photoArr[target[3]]++;
+    } else if (target[2] === 'left') {
+      photoArr[target[3]] === 0
+        ? photoArr[target[3]] = length
+        : photoArr[target[3]]--;
     }
     this.setState({
       photos: photoArr
     })
-    console.log(this.state.photos)
   }
 
   onBigClick(e) {
-    let value = e.target.value;
+    let className = e.target.className.split(' ')
+    let value = className[className.length - 1]
     let idx = this.state.homeId;
     let length = this.state.homes.length - 3;
 

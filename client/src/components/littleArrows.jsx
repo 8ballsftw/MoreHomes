@@ -1,5 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import right from '../../../public/site media/icons8-chevron-right-60.png';
+import left from '../../../public/site media/icons8-chevron-left-60.png';
 
 const ArrowWrapper = styled.div`
   background: transparent;
@@ -30,14 +32,26 @@ const Button = styled.button`
   }
 `;
 
+const LeftButtonImg = styled.img`
+  height: 12px;
+  margin-top: 4px;
+  margin-left: -1px;
+`;
+
+const RightButtonImg = styled.img`
+  height: 12px;
+  margin-top: 4px;
+  margin-left: 1px;
+`;
+
 const LittleArrows = ({ hovered, index, clickHandler }) => (
   <ArrowWrapper className="littleArrowWrapper">
     {hovered
-      ? <Button className="leftButton" value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}>{"<"}</Button>
+      ? <Button className={`left ${(index - 1).toString()}`} value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}><LeftButtonImg className={`left ${(index - 1).toString()}`} src={left} alt="left" /></Button>
       : <div></div>}
 
     {hovered
-      ? <Button className="rightButton" value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}>{">"}</Button>
+      ? <Button className={`right ${(index - 1).toString()}`} value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}><RightButtonImg className={`right ${(index - 1).toString()}`} src={right} alt="right" /></Button>
       : <div></div>}
   </ArrowWrapper>
 )

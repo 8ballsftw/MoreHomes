@@ -11,11 +11,9 @@ const HomeWrapper = styled.span`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 `;
 
 const Entry = (props) => {
-  // console.log(props.home.photos.length)
   return (
     <HomeWrapper id="homeWrapper">
       <Photo
@@ -24,7 +22,6 @@ const Entry = (props) => {
         photo={props.photo}
         heart={props.heart}
         hovered={props.hovered}
-        // hovered={true}
         arrowClickHandler={props.arrowClickHandler}
         photoClickHandler={props.photoClickHandler}
         photoHoverHandler={props.photoHoverHandler}

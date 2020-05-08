@@ -12,7 +12,6 @@ const DotWrapper = styled.div`
   align-items: center;
   overflow: hidden;
   z-index: 1;
-
 `;
 
 const Dots = styled.div`
