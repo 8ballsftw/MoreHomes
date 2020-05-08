@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import star from '../../../public/site media/Red_star.svg';
 
 const InfoWrapper = styled.div`
   line-height: 20px;
   max-height: 20px;
   width: 100%;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const LineOneWrapper = styled.div`
@@ -14,7 +18,6 @@ const LineOneWrapper = styled.div`
   align-items: center;
   width: 100%;
   font-weight: 200;
-  font-color: darkgrey;
   font-size: 14px;
 `;
 
@@ -31,7 +34,6 @@ const LineTwoWrapper = styled.div`
   justify-content: flex-start;
   font-weight: 300;
   font-size: 110%;
-
   line-height: 20px;
   max-height: 20px;
   overflow: hidden;
@@ -62,7 +64,6 @@ const Price = styled.div`
 const Rating = styled.div`
   padding: 3px;
   font-weight: 500;
-  font-color: black;
 `
 
 const RatingWrapper = styled.div`
@@ -79,7 +80,7 @@ const Info = ({home}) => (
         {`${home.home_type} · ${home.beds} beds`}
       </TypeWrapper>
       <RatingWrapper className="ratingWrapper">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Red_star.svg/252px-Red_star.svg.png" alt="red star" height="13" width="13"/>
+        <img src={star} alt="red star" height="13" width="13"/>
         <Rating className="rating">{home.rating}</Rating>
         {` (${home.rating_num})`}
       </RatingWrapper>

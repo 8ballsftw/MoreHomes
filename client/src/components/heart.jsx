@@ -6,7 +6,7 @@ import filledHeartImg from '../../../public/site media/filled_heart.png';
 const HeartWrapper = styled.div`
   background: transparent;
   width: 95%;
-  height: 75%;
+  height: 80%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
@@ -34,7 +34,8 @@ const Button = styled.button`
     outline: none;
   }
   :hover {
-    transform: scale(1.05, 1.05)
+    transform: scale(1.05, 1.05);
+    cursor: pointer;
   }
   :active {
     box-shadow: -1px -1x 3px rgba(19, 19, 19, .5);
@@ -45,11 +46,11 @@ const Heart = ({ heart, hovered, index, clickHandler }) => (
 <HeartWrapper className="heartWrapper">
   {heart
     ? <Button className={`heartButton ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}>
-      <HeartImg className={`heartButton ${(index - 1).toString()}`} src={filledHeartImg} alt="heart"/>
+      <HeartImg className={`heartButton ${(index - 1).toString()}`} src={filledHeartImg} alt="heart" />
       </Button>
     : hovered
       ? <Button className={`heartButton ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}>
-        <HeartImg className={`heartButton ${(index - 1).toString()}`} src={heartImg} alt="heart"/>
+        <HeartImg className={`heartButton ${(index - 1).toString()}`} src={heartImg} alt="heart" />
         </Button>
       : <div></div>}
 </HeartWrapper>

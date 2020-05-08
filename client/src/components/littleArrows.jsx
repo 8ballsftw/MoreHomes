@@ -21,7 +21,8 @@ const Button = styled.button`
     outline: none;
   }
   :hover {
-    transform: scale(1.05, 1.05)
+    transform: scale(1.05, 1.05);
+    cursor: pointer;
   }
   :active {
     box-shadow: -1px -1x 3px rgba(19, 19, 19, .5);
@@ -41,3 +42,13 @@ const LittleArrows = ({ hovered, index, clickHandler }) => (
 )
 
 export default LittleArrows;
+
+{/* <ArrowWrapper className="littleArrowWrapper">
+{hovered
+  ? <Button className="leftButton" value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}>{"<"}</Button>
+  : <div></div>}
+
+{hovered
+  ? <Button className="rightButton" value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}>{">"}</Button>
+  : <div></div>}
+</ArrowWrapper> */}

@@ -3,17 +3,36 @@ import Entry from './entry.jsx';
 import styled from 'styled-components';
 
 const CarouselWrapper = styled.div`
+border  : 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: auto;
   height: 300px;
+  position: relative;
+`;
+
+const EntryWrapper = styled.div`
+  display: flex;
+  width: inherit;
+  flex-direction: row;
+  justify-content: flex-start;
+  transition: transform 1s ease;
+  transform: translateX(-${props => props.homeId * 46.2}%);
+`;
+
+const EntryWrapperWrapper = styled.div`
+  border: 1px solid blue;
+  height: inherit;
+  width: 72%;
+  overflow: hidden;
 `;
 
 const ButtonWrapper = styled.div`
   background: transparent;
   width: 78%;
-  height: 220px;
+  height: 225px;
+  padding-top: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,33 +46,44 @@ const Button = styled.button`
   :focus {
     outline: none;
   }
+  display: flex;
+  align-items: center;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const MainCarousel = (props) => {
+  console.log(props.homeId)
   let highlightedHomes = [];
-  for (var i = props.homeId; i < props.homeId + 3; i++) {
+  // for (var i = props.homeId; i < props.homeId + 3; i++) {
+    for (var i = 0; i < props.homes.length; i++) {
     highlightedHomes.push([props.homes[i], props.photos[i], props.hearts[i]])
   }
   return (
     <CarouselWrapper value={"Carousel"}>
+      <EntryWrapperWrapper>
+      <EntryWrapper homeId={props.homeId}>
+        {highlightedHomes.map((home, index) => (
+          <Entry
+            key={index}
+            home={home[0]}
+            index={index + props.homeId + 1}
+            photo={home[1]}
+            heart={home[2]}
+            hovered={props.hovered === index + props.homeId + 1 ? true : false}
+            arrowClickHandler={props.littleClickHandler}
+            photoClickHandler={props.photoClickHandler}
+            photoHoverHandler={props.photoHoverHandler}
+            heartClickHandler={props.heartClickHandler}
+          />
+        ))}
+      </EntryWrapper>
+      </EntryWrapperWrapper>
       <ButtonWrapper>
         <Button value={"bigLeft"} onClick={(e) => props.bigClickHandler(e)}>{props.leftButton ? "<" : ""}</Button>
         <Button value={"bigRight"} onClick={(e) => props.bigClickHandler(e)}>{props.rightButton ? ">" : ""}</Button>
       </ButtonWrapper>
-      {highlightedHomes.map((home, index) => (
-        <Entry
-          key={index}
-          home={home[0]}
-          index={index + props.homeId + 1}
-          photo={home[1]}
-          heart={home[2]}
-          hovered={props.hovered === index + props.homeId + 1 ? true : false}
-          arrowClickHandler={props.littleClickHandler}
-          photoClickHandler={props.photoClickHandler}
-          photoHoverHandler={props.photoHoverHandler}
-          heartClickHandler={props.heartClickHandler}
-        />
-      ))}
     </CarouselWrapper>
   )
 }

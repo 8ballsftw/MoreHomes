@@ -11,7 +11,7 @@ const BodyWrapper = styled.div`
 
 const HeadingWrapper = styled.div`
   position: relative;
-  left: 13.5%;
+  left: 14.5%;
 `
 
 class App extends React.Component {
@@ -24,13 +24,20 @@ class App extends React.Component {
       leftButton: false,
       rightButton: true,
       hovered: null,
+
+      transformTest: 0
     }
+    this.refTest = React.createRef();
+
     this.onLittleClick = this.onLittleClick.bind(this);
     this.onBigClick = this.onBigClick.bind(this);
     this.onPhotoClick = this.onPhotoClick.bind(this);
     this.onPhotoHover = this.onPhotoHover.bind(this);
     this.onHeartClick = this.onHeartClick.bind(this);
+
+    this.refClick = this.refClick.bind(this);
   }
+
 
   componentDidMount() {
     let getArr = [];
@@ -91,6 +98,7 @@ class App extends React.Component {
   }
 
   onBigClick(e) {
+
     let value = e.target.value;
     let idx = this.state.homeId;
     let length = this.state.homes.length - 3;
@@ -109,7 +117,9 @@ class App extends React.Component {
       leftButton: left,
       rightButton: right
     })
+    console.log(this.state.homeId)
   }
+
 
   onPhotoClick() {
     console.log(`takes me to that property's page`)
@@ -121,12 +131,34 @@ class App extends React.Component {
       : this.setState({hovered: null})
   }
 
+  refClick() {
+    // e.preventDefault();
+    // console.log('h2 click')
+    // console.log(this.refTest.current.id)
+    // console.log(document.getElementById(this.refTest.current.id))
+    // document.getElementById(this.refTest.current.id).scrollDown = "150px";
+
+    let transform = this.state.homeId + 1
+
+    this.setState({
+      homeId: transform
+    })
+
+    // document.getElementById(this.refTest.current.id).style.marginLeft = "50px";
+
+    // window.scrollTo({
+    //   left: 100,
+    //   top: 0,
+    //   behavior: 'smooth'
+    // })
+  }
+
   render() {
     if (this.state.homes.length === 0) return <div></div>
     return (
       <BodyWrapper>
         <HeadingWrapper>
-          <h2>More homes you may like</h2>
+          <h2 id="title" onClick={() => this.refClick()}>More homes you may like</h2>
         </HeadingWrapper>
         <MainCarousel
           homes={this.state.homes}
@@ -141,6 +173,8 @@ class App extends React.Component {
           photoClickHandler={this.onPhotoClick}
           photoHoverHandler={this.onPhotoHover}
           heartClickHandler={this.onHeartClick}
+
+          // transformTest={this.start.transformTest}
         />
       </BodyWrapper>
     )

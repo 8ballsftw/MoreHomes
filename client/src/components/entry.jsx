@@ -5,16 +5,18 @@ import styled from 'styled-components';
 
 const HomeWrapper = styled.span`
   display: flex;
-  padding: 1%;
-  width: 23%;
+  padding: 0.5%;
+  // width: 300%;
+  min-width: 45.2%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
 const Entry = (props) => {
+  // console.log(props.home.photos.length)
   return (
-    <HomeWrapper>
+    <HomeWrapper id="homeWrapper">
       <Photo
         home={props.home}
         index={props.index}
