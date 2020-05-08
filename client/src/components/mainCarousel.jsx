@@ -3,7 +3,6 @@ import Entry from './entry.jsx';
 import styled from 'styled-components';
 
 const CarouselWrapper = styled.div`
-border  : 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -22,7 +21,6 @@ const EntryWrapper = styled.div`
 `;
 
 const EntryWrapperWrapper = styled.div`
-  border: 1px solid blue;
   height: inherit;
   width: 72%;
   overflow: hidden;
@@ -37,6 +35,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
+  z-index: -1;
 `;
 
 const Button = styled.button`
@@ -51,6 +50,8 @@ const Button = styled.button`
   :hover {
     cursor: pointer;
   }
+  position: relative;
+  z-index: 1;
 `;
 
 const MainCarousel = (props) => {
@@ -62,16 +63,17 @@ const MainCarousel = (props) => {
   }
   return (
     <CarouselWrapper value={"Carousel"}>
+        <Button value={"bigLeft"} onClick={(e) => props.bigClickHandler(e)}>{props.leftButton ? "<" : " "}</Button>
       <EntryWrapperWrapper>
       <EntryWrapper homeId={props.homeId}>
         {highlightedHomes.map((home, index) => (
           <Entry
             key={index}
             home={home[0]}
-            index={index + props.homeId + 1}
+            index={index + 1}
             photo={home[1]}
             heart={home[2]}
-            hovered={props.hovered === index + props.homeId + 1 ? true : false}
+            hovered={props.hovered === index + 1 ? true : false}
             arrowClickHandler={props.littleClickHandler}
             photoClickHandler={props.photoClickHandler}
             photoHoverHandler={props.photoHoverHandler}
@@ -80,10 +82,9 @@ const MainCarousel = (props) => {
         ))}
       </EntryWrapper>
       </EntryWrapperWrapper>
-      <ButtonWrapper>
-        <Button value={"bigLeft"} onClick={(e) => props.bigClickHandler(e)}>{props.leftButton ? "<" : ""}</Button>
-        <Button value={"bigRight"} onClick={(e) => props.bigClickHandler(e)}>{props.rightButton ? ">" : ""}</Button>
-      </ButtonWrapper>
+      {/* <ButtonWrapper> */}
+        <Button value={"bigRight"} onClick={(e) => props.bigClickHandler(e)}>{props.rightButton ? ">" : " "}</Button>
+      {/* </ButtonWrapper> */}
     </CarouselWrapper>
   )
 }

@@ -4,7 +4,6 @@ import star from '../../../public/site media/Red_star.svg';
 
 const InfoWrapper = styled.div`
   line-height: 20px;
-  max-height: 20px;
   width: 100%;
   :hover {
     cursor: pointer;

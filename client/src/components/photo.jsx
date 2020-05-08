@@ -16,7 +16,7 @@ const PhotoWrapper = styled.div`
   // margin-bottom: 10px;
   transition-duration: 1s;
   transition-timing-function: ease-out;
-  :hover {
+  &&:hover {
     cursor: pointer;
   }
 `;

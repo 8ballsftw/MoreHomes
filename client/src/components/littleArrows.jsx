@@ -8,6 +8,7 @@ const ArrowWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
+  z-index: 1;
 `;
 
 const Button = styled.button`
