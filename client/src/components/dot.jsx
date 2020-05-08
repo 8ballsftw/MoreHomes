@@ -4,23 +4,28 @@ import styled from 'styled-components';
 const DotStyle = styled.div`
 border-radius: 100%;
 text-align: center;
-background: grey;
-height: 8px;
-width: 8px;
-margin: 2px
+background: ${props => props.selected ? "white" : "grey"};
+min-height: ${props => props.small ? "6px" : "8px"};
+min-width: ${props => props.small ? "6px" : "8px"};
+max-height: ${props => props.small ? "6px" : "8px"};
+max-width: ${props => props.small ? "6px" : "8px"};
+margin: ${props => props.small ? "3px" : "2px"};
+opacity: 0.65;
 `
 
 
 
 const Dot = ({ small, selected }) => {
   return (
-    <DotStyle style={(selected && small)
-                      ? {background: 'lightgrey', height: '6px', width: '6px'}
-                      : small
-                        ? {height: '6px', width: '6px'}
-                        : selected
-                          ? {background: 'white'}
-                          : {}} />
+    // <DotStyle style={(selected && small)
+    //                   ? {background: 'lightgrey', minHeight: '6px', minWidth: '6px', maxHeight: '6px', maxWidth: '6px', margin: '4px'}
+    //                   : small
+    //                     ? {minHeight: '6px', minWidth: '6px', maxHeight: '6px', maxWidth: '6px', margin: '4px'}
+    //                     : selected
+    //                       ? {background: 'white'}
+    //                       : {}} />
+
+    <DotStyle small={small} selected={selected} />
   );
 }
 

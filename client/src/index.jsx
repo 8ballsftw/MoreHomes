@@ -91,6 +91,7 @@ class App extends React.Component {
     this.setState({
       photos: photoArr
     })
+    console.log(this.state.photos)
   }
 
   onBigClick(e) {
@@ -112,7 +113,6 @@ class App extends React.Component {
       leftButton: left,
       rightButton: right
     })
-    console.log(this.state.homeId)
   }
 
   onPhotoClick() {

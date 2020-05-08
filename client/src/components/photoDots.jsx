@@ -3,52 +3,47 @@ import styled from 'styled-components';
 import Dot from './dot.jsx'
 
 const DotWrapper = styled.div`
-  margin-top: 85px;
-  border: 1px solid red;
+  margin-top: 95px;
+  height: 12px;
+  width: 60px;
   position: absolute;
   display: flex;
-  justify-content: center;
+  // justify-content: flex-start;
   align-items: center;
+  overflow: hidden;
+  z-index: 1;
+
 `;
 
-const PhotoDots = ({ idx, photos }) => {
-  let mapLength = 0;
-  photos.length > 4
-    ? mapLength = 4
-    : mapLength = photos.length;
+const Dots = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+transition: transform 500ms ease;
+  transform: translateX(-${props => props.dotIdx * 12}px);
+`;
 
-  let end = photos.length - 1;
-  let mapStart = Math.max(0, Math.min(end - 4, idx - 2));
+const PhotoDots = ({ idx, length }) => {
+  let dotArr = [];
+  for (let i = 0; i < length; i++) {
+    let selected = false;
+    let small = true;
+    if (idx === i) selected = true;
+    if (i > idx - 2 && i < idx + 2) small = false;
+    if ((i < 4 && i > idx) || (i > length - 5 && i < idx)) small = false;
+    dotArr.push([small, selected]);
+  }
 
-
-  // "selected" rules ->
-    // if idx > 1
-      // selected = idx - map start
-    // else
-      // selected = idx
-
-
-  // "small" rules ->
-    // if idx < 2
-      // 5 is small
-    // else if end - idx < 2
-      // 0 is small
-    // else
-      // 1 && 5 are small
-
+  let dotIdx = Math.max(0, Math.min(length - 5, idx - 2))
 
   return (
-    <DotWrapper>
-      {/* {photos.forEach((urls, index) => (
-        (index >= mapStart && index <= end && index < (mapStart)) ?
-      ))} */}
-
-
-      <Dot small={true} selected={false}/>
-      <Dot small={false} selected={false}/>
-      <Dot small={false} selected={true}/>
-      <Dot small={false} selected={false}/>
-      <Dot small={true} selected={false}/>
+    <DotWrapper >
+      <Dots dotIdx={dotIdx}>
+        {dotArr.map((params, index) => (
+          <Dot small={params[0]} selected={params[1]} key={index}/>
+        ))}
+      </Dots>
     </DotWrapper>
   );
 }

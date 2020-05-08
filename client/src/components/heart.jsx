@@ -6,11 +6,12 @@ import filledHeartImg from '../../../public/site media/filled_heart.png';
 const HeartWrapper = styled.div`
   background: transparent;
   width: 95%;
-  height: 80%;
+  height: 90%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   position: absolute;
+  z-index: 1;
 `;
 
 const HeartImg = styled.img `

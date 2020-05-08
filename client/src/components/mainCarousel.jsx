@@ -7,7 +7,7 @@ const CarouselWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   width: auto;
-  height: 300px;
+  height: 320px;
   position: relative;
 `;
 
@@ -16,7 +16,7 @@ const EntryWrapper = styled.div`
   width: inherit;
   flex-direction: row;
   justify-content: flex-start;
-  transition: transform 1s ease;
+  transition: transform 500ms ease;
   transform: translateX(-${props => props.homeId * 46.2}%);
 `;
 
@@ -40,6 +40,9 @@ const ButtonWrapper = styled.div`
 
 const Button = styled.button`
   border: none;
+  height: 225px;
+  min-width: 30px;
+  padding: 10px;
   background: transparent;
   font-size: 200%;
   :focus {
@@ -54,25 +57,18 @@ const Button = styled.button`
   z-index: 1;
 `;
 
-const MainCarousel = (props) => {
-  console.log(props.homeId)
-  let highlightedHomes = [];
-  // for (var i = props.homeId; i < props.homeId + 3; i++) {
-    for (var i = 0; i < props.homes.length; i++) {
-    highlightedHomes.push([props.homes[i], props.photos[i], props.hearts[i]])
-  }
-  return (
-    <CarouselWrapper value={"Carousel"}>
-        <Button value={"bigLeft"} onClick={(e) => props.bigClickHandler(e)}>{props.leftButton ? "<" : " "}</Button>
-      <EntryWrapperWrapper>
+const MainCarousel = (props) => (
+  <CarouselWrapper>
+    <Button value={"bigLeft"} onClick={(e) => props.bigClickHandler(e)}>{props.leftButton ? "<" : "  "}</Button>
+    <EntryWrapperWrapper>
       <EntryWrapper homeId={props.homeId}>
-        {highlightedHomes.map((home, index) => (
+        {props.homes.map((home, index) => (
           <Entry
             key={index}
-            home={home[0]}
+            home={home}
             index={index + 1}
-            photo={home[1]}
-            heart={home[2]}
+            photo={props.photos[index]}
+            heart={props.hearts[index]}
             hovered={props.hovered === index + 1 ? true : false}
             arrowClickHandler={props.littleClickHandler}
             photoClickHandler={props.photoClickHandler}
@@ -81,12 +77,10 @@ const MainCarousel = (props) => {
           />
         ))}
       </EntryWrapper>
-      </EntryWrapperWrapper>
-      {/* <ButtonWrapper> */}
-        <Button value={"bigRight"} onClick={(e) => props.bigClickHandler(e)}>{props.rightButton ? ">" : " "}</Button>
-      {/* </ButtonWrapper> */}
-    </CarouselWrapper>
-  )
-}
+    </EntryWrapperWrapper>
+    <Button value={"bigRight"} onClick={(e) => props.bigClickHandler(e)}>{props.rightButton ? ">" : "  "}</Button>
+  </CarouselWrapper>
+)
+
 
 export default MainCarousel;

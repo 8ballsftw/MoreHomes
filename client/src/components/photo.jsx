@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Heart from './heart.jsx'
-import LittleArrows from './littleArrows.jsx'
-import PhotoDots from './photoDots.jsx'
+import Heart from './heart.jsx';
+import LittleArrows from './littleArrows.jsx';
+import PhotoDots from './photoDots.jsx';
+import PhotoImage from './photoImage.jsx';
 
 const PhotoWrapper = styled.div`
   position: relative;
@@ -13,20 +14,19 @@ const PhotoWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  // margin-bottom: 10px;
-  transition-duration: 1s;
-  transition-timing-function: ease-out;
-  &&:hover {
-    cursor: pointer;
-  }
+  overflow: hidden;
 `;
 
-const PhotoImg = styled.img`
+const PhotoImageWrapper = styled.div`
+  display: flex;
+  justify-contents: flex-start;
   border-radius: 6px;
   height: 225px;
   width: 100%;
-  object-fit: cover;
+  transition: transform 500ms ease;
+  transform: translateX(-${props => props.photo * 100}%);
 `;
+
 
 const Photo = ({ home, index, photo, heart, hovered, arrowClickHandler, photoClickHandler, photoHoverHandler, heartClickHandler }) => (
   <PhotoWrapper
@@ -37,9 +37,15 @@ const Photo = ({ home, index, photo, heart, hovered, arrowClickHandler, photoCli
     <Heart heart={heart} index={index} hovered={hovered} clickHandler={heartClickHandler}/>
     <LittleArrows index={index} hovered={hovered} clickHandler={arrowClickHandler} />
 
-    <PhotoDots idx={photo} photos={home.photos} />
+    <PhotoDots idx={photo} length={home.photos ? home.photos.length : 0} />
 
-    <PhotoImg className="homePhoto" src={home.photos[photo]} alt={home.title} onClick={() => photoClickHandler()}/>
+    <PhotoImageWrapper photo={photo}>
+      {home.photos.map((photo, index) => (
+        <PhotoImage photo={photo} key={index} title={home.title} clickHandler={photoClickHandler}/>
+      ))}
+    </PhotoImageWrapper>
+
+    {/* <PhotoImg className="homePhoto" src={home.photos[photo]} alt={home.title} onClick={() => photoClickHandler()}/> */}
 
     {/* <code>{`${photo} - ${index}`}</code> */}
   </PhotoWrapper>
