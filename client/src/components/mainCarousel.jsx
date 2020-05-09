@@ -1,8 +1,8 @@
 import React from 'react';
 import Entry from './entry.jsx';
 import styled from 'styled-components';
-import right from '../../../public/site media/icons8-chevron-right-90-grey.png';
 import left from '../../../public/site media/icons8-chevron-left-90-grey.png';
+import right from '../../../public/site media/icons8-chevron-right-90-grey.png';
 
 const CarouselWrapper = styled.div`
   display: flex;
@@ -69,6 +69,8 @@ const RightButtonImg = styled.img`
   margin-top: 3px;
   margin-left: -2px;
 `;
+
+
 
 const MainCarousel = (props) => (
   <CarouselWrapper>

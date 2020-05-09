@@ -6,12 +6,12 @@ import MainCarousel from './components/mainCarousel.jsx';
 const axios = require('axios');
 
 const BodyWrapper = styled.div`
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Lato', sans-serif;
 `
 
-const HeadingWrapper = styled.div`
+const HeadingWrapper = styled.h2`
   position: relative;
-  left: 14.5%;
+  margin-left: 14%;
 `
 
 class App extends React.Component {
@@ -66,7 +66,7 @@ class App extends React.Component {
     // splits the return into "direction" and "index"
     let className = e.target.className.split(' ');
     let idx = className[3];
-    let value = className[2]
+    let value = className[2];
     let photoArr = this.state.photos;
     // length of the photo array
     let length = this.state.homes[idx].photos.length - 1;
@@ -128,9 +128,7 @@ class App extends React.Component {
     if (this.state.homes.length === 0) return <div></div>
     return (
       <BodyWrapper>
-        <HeadingWrapper>
-          <h2 id="title">More homes you may like</h2>
-        </HeadingWrapper>
+        <HeadingWrapper id="title">More homes you may like</HeadingWrapper>
         <MainCarousel
           homes={this.state.homes}
           photos={this.state.photos}
