@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import heartImg from '../../../public/site media/heart.png';
-import filledHeartImg from '../../../public/site media/filled_heart.png';
+import heartImg from '../../../../../public/site media/heart.png';
+import filledHeartImg from '../../../../../public/site media/filled_heart.png';
 
 const HeartWrapper = styled.div`
   background: transparent;
@@ -55,6 +55,6 @@ const Heart = ({ heart, hovered, index, clickHandler }) => (
         </Button>
       : <div></div>}
 </HeartWrapper>
-)
+);
 
-export default Heart
+export default Heart;

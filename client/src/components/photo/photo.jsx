@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Heart from './heart.jsx';
-import LittleArrows from './littleArrows.jsx';
-import PhotoDots from './photoDots.jsx';
+import Heart from './buttons/heart.jsx';
 import PhotoImage from './photoImage.jsx';
+import PhotoDots from './dots/photoDots.jsx';
+import LittleArrows from './buttons/littleArrows.jsx';
 
 const PhotoWrapper = styled.div`
   position: relative;
@@ -36,18 +36,12 @@ const Photo = ({ home, index, photo, heart, hovered, arrowClickHandler, photoCli
   >
     <Heart heart={heart} index={index} hovered={hovered} clickHandler={heartClickHandler}/>
     <LittleArrows index={index} hovered={hovered} clickHandler={arrowClickHandler} />
-
     <PhotoDots idx={photo} length={home.photos ? home.photos.length : 0} />
-
     <PhotoImageWrapper photo={photo}>
       {home.photos.map((photo, index) => (
         <PhotoImage photo={photo} key={index} title={home.title} clickHandler={photoClickHandler}/>
       ))}
     </PhotoImageWrapper>
-
-    {/* <PhotoImg className="homePhoto" src={home.photos[photo]} alt={home.title} onClick={() => photoClickHandler()}/> */}
-
-    {/* <code>{`${photo} - ${index}`}</code> */}
   </PhotoWrapper>
 )
 

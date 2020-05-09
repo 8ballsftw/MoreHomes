@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dot from './dot.jsx'
+import Dot from './dot.jsx';
 
 const DotWrapper = styled.div`
   margin-top: 95px;
@@ -15,26 +15,27 @@ const DotWrapper = styled.div`
 `;
 
 const Dots = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: center;
-transition: transform 500ms ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  transition: transform 500ms ease;
   transform: translateX(-${props => props.dotIdx * 12}px);
 `;
 
 const PhotoDots = ({ idx, length }) => {
   let dotArr = [];
+  let dotIdx = Math.max(0, Math.min(length - 5, idx - 2));
+
   for (let i = 0; i < length; i++) {
     let selected = false;
     let small = true;
     if (idx === i) selected = true;
+    if (i === 0 || i === length - 1) small = false;
     if (i > idx - 2 && i < idx + 2) small = false;
     if ((i < 4 && i > idx) || (i > length - 5 && i < idx)) small = false;
     dotArr.push([small, selected]);
-  }
-
-  let dotIdx = Math.max(0, Math.min(length - 5, idx - 2))
+  };
 
   return (
     <DotWrapper >

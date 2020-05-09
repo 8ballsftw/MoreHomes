@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import right from '../../../public/site media/icons8-chevron-right-60.png';
-import left from '../../../public/site media/icons8-chevron-left-60.png';
+import left from '../../../../../public/site media/icons8-chevron-left-60.png';
+import right from '../../../../../public/site media/icons8-chevron-right-60.png';
 
 const ArrowWrapper = styled.div`
   background: transparent;
@@ -54,16 +54,6 @@ const LittleArrows = ({ hovered, index, clickHandler }) => (
       ? <Button className={`right ${(index - 1).toString()}`} value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}><RightButtonImg className={`right ${(index - 1).toString()}`} src={right} alt="right" /></Button>
       : <div></div>}
   </ArrowWrapper>
-)
+);
 
 export default LittleArrows;
-
-{/* <ArrowWrapper className="littleArrowWrapper">
-{hovered
-  ? <Button className="leftButton" value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}>{"<"}</Button>
-  : <div></div>}
-
-{hovered
-  ? <Button className="rightButton" value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}>{">"}</Button>
-  : <div></div>}
-</ArrowWrapper> */}

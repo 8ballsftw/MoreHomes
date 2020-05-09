@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainCarousel from './components/mainCarousel.jsx';
 import styled from 'styled-components';
+import MainCarousel from './components/mainCarousel.jsx';
 
 const axios = require('axios');
 
@@ -25,10 +25,8 @@ class App extends React.Component {
       rightButton: true,
       hovered: null,
     }
-    this.refTest = React.createRef();
-
-    this.onLittleClick = this.onLittleClick.bind(this);
     this.onBigClick = this.onBigClick.bind(this);
+    this.onLittleClick = this.onLittleClick.bind(this);
     this.onPhotoClick = this.onPhotoClick.bind(this);
     this.onPhotoHover = this.onPhotoHover.bind(this);
     this.onHeartClick = this.onHeartClick.bind(this);
@@ -64,29 +62,22 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-  onHeartClick(e) {
-    let className = e.target.className.split(' ');
-    let id = className[className.length - 1];
-
-    let heartArr = this.state.hearts;
-    heartArr[id] = !heartArr[id];
-    this.setState({hearts: heartArr});
-  }
-
   onLittleClick(e) {
     // splits the return into "direction" and "index"
-    let target = e.target.className.split(' ');
+    let className = e.target.className.split(' ');
+    let idx = className[3];
+    let value = className[2]
     let photoArr = this.state.photos;
     // length of the photo array
-    let length = this.state.homes[target[3]].photos.length - 1;
-    if (target[2] === 'right') {
-      photoArr[target[3]] === length
-        ? photoArr[target[3]] = 0
-        : photoArr[target[3]]++;
-    } else if (target[2] === 'left') {
-      photoArr[target[3]] === 0
-        ? photoArr[target[3]] = length
-        : photoArr[target[3]]--;
+    let length = this.state.homes[idx].photos.length - 1;
+    if (value === 'right') {
+      photoArr[idx] === length
+        ? photoArr[idx] = 0
+        : photoArr[idx]++;
+    } else if (value === 'left') {
+      photoArr[idx] === 0
+        ? photoArr[idx] = length
+        : photoArr[idx]--;
     }
     this.setState({
       photos: photoArr
@@ -117,6 +108,14 @@ class App extends React.Component {
 
   onPhotoClick() {
     console.log(`takes me to that property's page`)
+  }
+
+  onHeartClick(e) {
+    let className = e.target.className.split(' ');
+    let id = className[className.length - 1];
+    let heartArr = this.state.hearts;
+    heartArr[id] = !heartArr[id];
+    this.setState({hearts: heartArr});
   }
 
   onPhotoHover(e, bool) {
