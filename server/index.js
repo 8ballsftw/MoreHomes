@@ -11,10 +11,6 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.end();
-});
-
 app.get('/homeInfo/:property_id', (req, res) => {
   db.getHomeInfo(req.params.property_id, (err, succ) => {
     if (err) {

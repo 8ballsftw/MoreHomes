@@ -1,13 +1,20 @@
+/* eslint-disable no-unused-expressions */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainCarousel from './components/mainCarousel.jsx';
 import styled from 'styled-components';
+// eslint-disable-next-line import/extensions
+import MainCarousel from './components/mainCarousel.jsx';
+
 const axios = require('axios');
 
-const HeadingWrapper = styled.div`
+const BodyWrapper = styled.div`
+  font-family: 'Montserrat', 'Lato', sans-serif;
+`;
+
+const HeadingWrapper = styled.h2`
   position: relative;
-  left: 14%;
-`
+  margin-left: 14%;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -15,111 +22,142 @@ class App extends React.Component {
     this.state = {
       homes: [],
       photos: [],
+      hearts: [],
       leftButton: false,
       rightButton: true,
-      hovered: null,
-    }
-    this.onLittleClick = this.onLittleClick.bind(this);
+      hovered: -1,
+    };
     this.onBigClick = this.onBigClick.bind(this);
+    this.onLittleClick = this.onLittleClick.bind(this);
     this.onPhotoClick = this.onPhotoClick.bind(this);
     this.onPhotoHover = this.onPhotoHover.bind(this);
+    this.onHeartClick = this.onHeartClick.bind(this);
   }
 
+
   componentDidMount() {
-    let getArr = [];
-    let photoArr = [];
+    const getArr = [];
+    const zeroArr = [];
+    const boolArr = [];
     while (getArr.length < 12) {
-      let rand = Math.floor(Math.random() * 100) + 1;
+      const rand = Math.floor(Math.random() * 100) + 1;
       if (getArr.indexOf(rand) === -1) {
         getArr.push(rand);
-        photoArr.push(0);
+        zeroArr.push(0);
+        boolArr.push(false);
       }
     }
-    let request = {
+    const request = {
       method: 'PUT',
-      url : '/init',
-      data: {id: JSON.stringify(getArr)}
-    }
+      url: '/init',
+      data: { id: JSON.stringify(getArr) },
+    };
     axios(request)
-      .then(res => {
-        this.setState ({
+      .then((res) => {
+        this.setState({
           homes: res.data,
-          photos: photoArr,
-          homeId: 0
-        })
+          photos: zeroArr,
+          hearts: boolArr,
+          homeId: 0,
+        });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   onLittleClick(e) {
     // splits the return into "direction" and "index"
-    let target = e.target.value.split(' ')
-    let photoArr = this.state.photos;
+    const className = e.target.className.split(' ');
+    const idx = className[3];
+    const value = className[2];
+    const { photos } = this.state;
     // length of the photo array
-    let length = this.state.homes[target[1]].photos.length - 1;
-    if (target[0] === 'right') {
-      photoArr[target[1]] === length
-        ? photoArr[target[1]] = 0
-        : photoArr[target[1]]++;
-    } else if (target[0] === 'left') {
-      photoArr[target[1]] === 0
-        ? photoArr[target[1]] = length
-        : photoArr[target[1]]--;
+    const { homes } = this.state;
+    const length = homes[idx].photos.length - 1;
+    if (value === 'right') {
+      photos[idx] === length
+        ? photos[idx] = 0
+        : photos[idx] += 1;
+    } else if (value === 'left') {
+      photos[idx] === 0
+        ? photos[idx] = length
+        : photos[idx] -= 1;
     }
     this.setState({
-      photos: photoArr
-    })
+      photos,
+    });
   }
 
   onBigClick(e) {
-    let value = e.target.value;
-    let idx = this.state.homeId;
-    let length = this.state.homes.length - 3;
+    const className = e.target.className.split(' ');
+    const value = className[className.length - 1];
+    const { homes } = this.state;
+    const length = homes.length - 3;
+    let { homeId } = this.state;
+    let { leftButton } = this.state;
+    let { rightButton } = this.state;
 
-    value === "bigRight"
-      ? idx = Math.min(length, idx + 1)
-      : idx = Math.max(0, idx - 1);
+    value === 'bigRight'
+      ? homeId = Math.min(length, homeId + 1)
+      : homeId = Math.max(0, homeId - 1);
 
-    let left = this.state.leftButton;
-    let right = this.state.rightButton;
-    idx === 0 ? left = false : left = true;
-    idx === length ? right = false : right = true;
+    homeId === 0 ? leftButton = false : leftButton = true;
+    homeId === length ? rightButton = false : rightButton = true;
 
     this.setState({
-      homeId: idx,
-      leftButton: left,
-      rightButton: right
-    })
+      homeId,
+      leftButton,
+      rightButton,
+    });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   onPhotoClick() {
-    console.log(`takes me to that property's page`)
+    console.log('takes me to that property\'s page');
+  }
+
+  onHeartClick(e) {
+    const className = e.target.className.split(' ');
+    const id = className[className.length - 1];
+    const { hearts } = this.state;
+    hearts[id] = !hearts[id];
+    this.setState({ hearts, });
   }
 
   onPhotoHover(e, bool) {
-    bool ? this.setState({hovered: e}) : this.setState({hovered: null})
+    bool
+      ? this.setState({ hovered: e })
+      : this.setState({ hovered: -1 });
   }
 
   render() {
+    const { homes } = this.state;
+    const { photos } = this.state;
+    const { hearts } = this.state;
+    const { homeId } = this.state;
+    const { leftButton } = this.state;
+    const { rightButton } = this.state;
+    const { hovered } = this.state;
+
+    if (homes.length === 0) return <div />;
     return (
-      <div>
-        <HeadingWrapper>
-          <h2>More homes you may like</h2>
-        </HeadingWrapper>
+      <BodyWrapper>
+        <HeadingWrapper id="title">More homes you may like</HeadingWrapper>
         <MainCarousel
-          homes={this.state.homes}
-          photos={this.state.photos}
-          homeId={this.state.homeId}
-          leftButton={this.state.leftButton}
-          rightButton={this.state.rightButton}
-          hovered={this.state.hovered}
+          homes={homes}
+          photos={photos}
+          hearts={hearts}
+          homeId={homeId}
+          leftButton={leftButton}
+          rightButton={rightButton}
+          hovered={hovered}
           bigClickHandler={this.onBigClick}
           littleClickHandler={this.onLittleClick}
           photoClickHandler={this.onPhotoClick}
           photoHoverHandler={this.onPhotoHover}
+          heartClickHandler={this.onHeartClick}
         />
-      </div>
-    )
+      </BodyWrapper>
+    );
   }
 }
 
