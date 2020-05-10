@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import star from '../../../../public/site media/red-star.png';
-import plus from '../../../../public/site media/plus.png'
+import plus from '../../../../public/site media/plus.png';
 import plusStar from '../../../../public/site media/plus-star.png';
-
 
 const InfoWrapper = styled.div`
   line-height: 20px;
   width: 100%;
+  padding: 2px;
   :hover {
     cursor: pointer;
   }
@@ -18,10 +19,37 @@ const LineOneWrapper = styled.div`
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
+  line-height: 18px;
+  max-height: 18px;
   width: 100%;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
   color: #707070;
+`;
+
+const LineTwoWrapper = styled.div`
+  display: flex
+  justify-content: flex-start;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 18px;
+  max-height: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+const LineThreeWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding-top: 2px;
+  line-height: 18px;
+  max-height: 18px;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const TypeWrapper = styled.div`
@@ -34,28 +62,26 @@ const TypeWrapper = styled.div`
   text-overflow: ellipsis;
 `;
 
-const LineTwoWrapper = styled.div`
-  display: flex
-  justify-content: flex-start;
-  font-weight: 300;
-  font-size: 110%;
-  line-height: 20px;
-  max-height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+const Plus = styled.img`
+  height: 17px;
+  margin-top: 1px;
+  margin-right: 4px;
 `;
 
-const LineThreeWrapper = styled.div`
+const RatingWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
   flex-direction: row;
-  padding-top: 2%;
-  line-height: 20px;
-  max-height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  align-items: center;
+`;
+
+const Star = styled.img`
+  margin-top: -2px;
+`;
+
+const Rating = styled.div`
+  padding: 3px;
+  font-weight: 500;
+  color: black;
 `;
 
 const Price = styled.div`
@@ -66,29 +92,6 @@ const Price = styled.div`
   text-overflow: ellipsis;
 `;
 
-const Rating = styled.div`
-  padding: 3px;
-  font-weight: 500;
-  color: black;
-`;
-
-const RatingWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Plus = styled.img`
-  height: 17px;
-  margin-top: 1px;
-  margin-right: 4px;
-`;
-
-const Star = styled.img`
-  margin-top: -1px;
-`;
-
-
 const Info = ({ home }) => (
   <InfoWrapper>
     <LineOneWrapper className="lineOne">
@@ -97,7 +100,7 @@ const Info = ({ home }) => (
         {`${home.home_type} · ${home.beds} beds`}
       </TypeWrapper>
       <RatingWrapper className="ratingWrapper">
-        <Star src={home.is_plus ? plusStar : star} alt="star" height="13" width="13"/>
+        <Star src={home.is_plus ? plusStar : star} alt="star" height="13" width="13" />
         <Rating className="rating">{home.rating}</Rating>
         {` (${home.rating_num})`}
       </RatingWrapper>
@@ -107,9 +110,13 @@ const Info = ({ home }) => (
     </LineTwoWrapper>
     <LineThreeWrapper className="lineThree">
       <Price className="price">{`$${home.price} `}</Price>
-      {`  / night`}
+      {'  / night'}
     </LineThreeWrapper>
   </InfoWrapper>
 );
+
+Info.propTypes = {
+  home: PropTypes.object.isRequired,
+};
 
 export default Info;

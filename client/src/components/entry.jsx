@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Photo from './photo/photo.jsx';
 import Info from './info/info.jsx';
-import styled from 'styled-components';
 
 const HomeWrapper = styled.span`
   display: flex;
@@ -13,24 +14,45 @@ const HomeWrapper = styled.span`
   align-items: center;
 `;
 
-const Entry = (props) => (
+const Entry = ({
+  home,
+  index,
+  photo,
+  heart,
+  hovered,
+  arrowClickHandler,
+  photoClickHandler,
+  photoHoverHandler,
+  heartClickHandler,
+}) => (
   <HomeWrapper id="homeWrapper">
     <Photo
-      home={props.home}
-      index={props.index}
-      photo={props.photo}
-      heart={props.heart}
-      hovered={props.hovered}
-      arrowClickHandler={props.arrowClickHandler}
-      photoClickHandler={props.photoClickHandler}
-      photoHoverHandler={props.photoHoverHandler}
-      heartClickHandler={props.heartClickHandler}
+      home={home}
+      index={index}
+      photo={photo}
+      heart={heart}
+      hovered={hovered}
+      arrowClickHandler={arrowClickHandler}
+      photoClickHandler={photoClickHandler}
+      photoHoverHandler={photoHoverHandler}
+      heartClickHandler={heartClickHandler}
     />
     <Info
-      home={props.home}
+      home={home}
     />
-      {/* {`${home[1]} - ${index + homeId + 1}`} */}
   </HomeWrapper>
 );
+
+Entry.propTypes = {
+  home: PropTypes.object.isRequired,
+  photo: PropTypes.number.isRequired,
+  heart: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  hovered: PropTypes.bool.isRequired,
+  arrowClickHandler: PropTypes.func.isRequired,
+  photoClickHandler: PropTypes.func.isRequired,
+  photoHoverHandler: PropTypes.func.isRequired,
+  heartClickHandler: PropTypes.func.isRequired,
+};
 
 export default Entry;

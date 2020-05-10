@@ -1,6 +1,7 @@
 import React from 'react';
-import Entry from './entry.jsx';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Entry from './entry.jsx';
 import left from '../../../public/site media/icons8-chevron-left-90-grey.png';
 import right from '../../../public/site media/icons8-chevron-right-90-grey.png';
 
@@ -19,25 +20,13 @@ const EntryWrapper = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   transition: transform 500ms ease;
-  transform: translateX(-${props => props.homeId * 46.2}%);
+  transform: translateX(-${(props) => props.homeId * 46.2}%);
 `;
 
 const EntryWrapperWrapper = styled.div`
   height: inherit;
   width: 72%;
   overflow: hidden;
-`;
-
-const ButtonWrapper = styled.div`
-  background: transparent;
-  width: 78%;
-  height: 225px;
-  padding-top: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  z-index: -1;
 `;
 
 const Button = styled.button`
@@ -64,38 +53,57 @@ const ButtonImg = styled.img`
   margin-top: 2px;
 `;
 
-const RightButtonImg = styled.img`
-  height: 20px;
-  margin-top: 3px;
-  margin-left: -2px;
-`;
-
-
-
-const MainCarousel = (props) => (
+const MainCarousel = ({
+  homes,
+  photos,
+  hearts,
+  homeId,
+  leftButton,
+  rightButton,
+  hovered,
+  bigClickHandler,
+  littleClickHandler,
+  photoClickHandler,
+  photoHoverHandler,
+  heartClickHandler,
+}) => (
   <CarouselWrapper>
-    <Button className="bigLeft" value={"bigLeft"} onClick={(e) => props.bigClickHandler(e)}>{props.leftButton ? <ButtonImg className="bigLeft" src={left} alt="left" /> : <img/>}</Button>
+    <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}>{leftButton ? <ButtonImg className="bigLeft" src={left} alt="left" /> : <img alt='' />}</Button>
     <EntryWrapperWrapper>
-      <EntryWrapper homeId={props.homeId}>
-        {props.homes.map((home, index) => (
+      <EntryWrapper homeId={homeId}>
+        {homes.map((home, index) => (
           <Entry
             key={index}
             home={home}
             index={index + 1}
-            photo={props.photos[index]}
-            heart={props.hearts[index]}
-            hovered={props.hovered === index + 1 ? true : false}
-            arrowClickHandler={props.littleClickHandler}
-            photoClickHandler={props.photoClickHandler}
-            photoHoverHandler={props.photoHoverHandler}
-            heartClickHandler={props.heartClickHandler}
+            photo={photos[index]}
+            heart={hearts[index]}
+            hovered={hovered === index + 1}
+            arrowClickHandler={littleClickHandler}
+            photoClickHandler={photoClickHandler}
+            photoHoverHandler={photoHoverHandler}
+            heartClickHandler={heartClickHandler}
           />
         ))}
       </EntryWrapper>
     </EntryWrapperWrapper>
-    <Button className="bigRight" value={"bigRight"} onClick={(e) => props.bigClickHandler(e)}>{props.rightButton ? <ButtonImg className="bigRight" src={right} alt="right" /> : "  "}</Button>
+    <Button className="bigRight" onClick={(e) => bigClickHandler(e)}>{rightButton ? <ButtonImg className="bigRight" src={right} alt="right" /> : ' '}</Button>
   </CarouselWrapper>
-)
+);
 
+MainCarousel.propTypes = {
+  homes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  photos: PropTypes.arrayOf(PropTypes.number).isRequired,
+  hearts: PropTypes.arrayOf(PropTypes.bool).isRequired,
+  homeId: PropTypes.number.isRequired,
+  leftButton: PropTypes.bool.isRequired,
+  rightButton: PropTypes.bool.isRequired,
+  hovered: PropTypes.number.isRequired,
+  bigClickHandler: PropTypes.func.isRequired,
+  littleClickHandler: PropTypes.func.isRequired,
+  photoClickHandler: PropTypes.func.isRequired,
+  photoHoverHandler: PropTypes.func.isRequired,
+  heartClickHandler: PropTypes.func.isRequired,
+};
 
 export default MainCarousel;

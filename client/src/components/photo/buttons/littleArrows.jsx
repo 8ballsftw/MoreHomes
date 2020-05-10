@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import left from '../../../../../public/site media/icons8-chevron-left-60.png';
 import right from '../../../../../public/site media/icons8-chevron-right-60.png';
@@ -47,13 +48,18 @@ const RightButtonImg = styled.img`
 const LittleArrows = ({ hovered, index, clickHandler }) => (
   <ArrowWrapper className="littleArrowWrapper">
     {hovered
-      ? <Button className={`left ${(index - 1).toString()}`} value={"left " + (index - 1).toString()} onClick={(e) => clickHandler(e)}><LeftButtonImg className={`left ${(index - 1).toString()}`} src={left} alt="left" /></Button>
-      : <div></div>}
-
+      ? <Button className={`left ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}><LeftButtonImg className={`left ${(index - 1).toString()}`} src={left} alt="left" /></Button>
+      : <div />}
     {hovered
-      ? <Button className={`right ${(index - 1).toString()}`} value={"right " + (index - 1).toString()} onClick={(e) => {clickHandler(e)}}><RightButtonImg className={`right ${(index - 1).toString()}`} src={right} alt="right" /></Button>
-      : <div></div>}
+      ? <Button className={`right ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}><RightButtonImg className={`right ${(index - 1).toString()}`} src={right} alt="right" /></Button>
+      : <div />}
   </ArrowWrapper>
 );
+
+LittleArrows.propTypes = {
+  hovered: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  clickHandler: PropTypes.func.isRequired,
+};
 
 export default LittleArrows;
