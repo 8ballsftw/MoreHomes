@@ -1,4 +1,4 @@
-const db = require('./db/index.js');
+const db = require('../db/index.js');
 const photoUrl = require('./photoUrl.js');
 
 const homeSeeder = (idx) => {
