@@ -9,7 +9,7 @@ const photoDir = path.join(__dirname, '../homePhotos');
 
 
 //this is only for the initial photoseed, but it would be good to change it to a promise chain
-const photoSeed = () => {
+const photoUpload = () => {
   fs.readdir(photoDir, (err, folders) => {
     if (err) {
       throw err;
@@ -62,4 +62,4 @@ const photoSeed = () => {
   });
 };
 
-module.exports.photoSeed = photoSeed;
+module.exports.photoUpload = photoUpload;

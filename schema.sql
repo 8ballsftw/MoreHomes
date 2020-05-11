@@ -20,7 +20,5 @@ CREATE TABLE photo_info (
   id int NOT NULL AUTO_INCREMENT,
   home_id int,
   file_url VARCHAR(255),
-  PRIMARY KEY (id),
-  FOREIGN KEY (home_id)
-    REFERENCES home_info(home_id)
+  PRIMARY KEY (id)
 );

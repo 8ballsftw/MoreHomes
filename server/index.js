@@ -31,4 +31,14 @@ app.put('/init', (req, res) => {
   });
 });
 
+app.get('/photos', (req, res) => {
+  db.insertOne('select home_id, file_url from photo_info', (err, data) => {
+    if (err) {
+      res.status(404).send(err)
+    } else {
+      res.send(data);
+    }
+  })
+})
+
 app.listen(port, () => console.log(`Ahoy cap't! Ready and Willing at port ${port}!!`));
