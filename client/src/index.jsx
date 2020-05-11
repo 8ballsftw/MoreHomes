@@ -61,7 +61,7 @@ class App extends React.Component {
           homeId: 0,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }
 
   onLittleClick(e) {
@@ -120,7 +120,7 @@ class App extends React.Component {
     const id = className[className.length - 1];
     const { hearts } = this.state;
     hearts[id] = !hearts[id];
-    this.setState({ hearts, });
+    this.setState({ hearts });
   }
 
   onPhotoHover(e, bool) {

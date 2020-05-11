@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Entry from './entry.jsx';
-import left from '../../../public/site media/icons8-chevron-left-90-grey.png';
-import right from '../../../public/site media/icons8-chevron-right-90-grey.png';
+import left from '../../../public/site media/grey-left-arrow.png';
+import right from '../../../public/site media/grey-right-arrow.png';
+import blank from '../../../public/site media/blank-arrow.png';
 
 const CarouselWrapper = styled.div`
   display: flex;
@@ -68,7 +69,7 @@ const MainCarousel = ({
   heartClickHandler,
 }) => (
   <CarouselWrapper>
-    <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}>{leftButton ? <ButtonImg className="bigLeft" src={left} alt="left" /> : <img alt='' />}</Button>
+    <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigLeft" src={leftButton ? left : blank} alt="left" /></Button>
     <EntryWrapperWrapper>
       <EntryWrapper homeId={homeId}>
         {homes.map((home, index) => (
@@ -87,7 +88,7 @@ const MainCarousel = ({
         ))}
       </EntryWrapper>
     </EntryWrapperWrapper>
-    <Button className="bigRight" onClick={(e) => bigClickHandler(e)}>{rightButton ? <ButtonImg className="bigRight" src={right} alt="right" /> : ' '}</Button>
+    <Button className="bigRight" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigRight" src={rightButton ? right : blank} alt="right" /></Button>
   </CarouselWrapper>
 );
 

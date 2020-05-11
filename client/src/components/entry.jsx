@@ -7,7 +7,6 @@ import Info from './info/info.jsx';
 const HomeWrapper = styled.span`
   display: flex;
   padding: 0.5%;
-  // width: 300%;
   min-width: 45.2%;
   flex-direction: column;
   justify-content: center;

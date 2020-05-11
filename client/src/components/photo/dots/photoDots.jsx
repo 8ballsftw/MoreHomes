@@ -6,7 +6,7 @@ import Dot from './dot.jsx';
 const DotWrapper = styled.div`
   margin-top: 95px;
   height: 12px;
-  width: 60px;
+  max-width: 60px;
   position: absolute;
   display: flex;
   // justify-content: flex-start;
