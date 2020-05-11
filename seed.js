@@ -6,11 +6,12 @@ const seeder = (idx) => {
     let result = '';
     const adjectives = ['Luxurious', 'Captivating', 'Impeccable', 'Stainless', 'Basketball', 'Landscaped', 'Pergola', 'Remodeled', 'Beautiful', 'Gentle', 'Spotless', 'Tiled', 'Updated', 'Best', 'Huge', 'Luxury'];
     const nouns = ['house', 'room', 'apartment', 'condo', 'condominium', 'townhouse', 'castle', 'mansion', 'beach house', 'fancy tent', 'skihaus'];
-    const bonuses = ['pool', 'bbq', 'hot tub', 'tennis court', 'yard'];
+    const bonuses = ['pool', 'bbq', 'hot tub', 'tennis court', 'yard', 'porch', 'outhouse', 'garage', 'deck'];
     const selector = (arr) => {
       const rand = Math.floor(Math.random() * arr.length);
       if (arr[0] === 'pool') {
         if (Math.random() > 0.75) return ` with a ${arr[rand]}`;
+        return '';
       }
       return arr[rand];
     };
@@ -33,7 +34,8 @@ const seeder = (idx) => {
     return rand;
   };
 
-  let rating = (randNum(275, 500) / 100);
+  let rating = (randNum(275, 501) / 100).toString();
+  if (rating.length === 1) rating = `${rating}.0`;
   const beds = randNum(1, 25);
   const ratingNum = randNum(0, 100);
   if (ratingNum === 0) rating = null;
@@ -49,8 +51,8 @@ const seeder = (idx) => {
   });
 };
 
-for (let i = 0; i < 100; i += 1) {
-  seeder(i + 1);
+for (let i = 1; i <= 100; i += 1) {
+  seeder(i);
 };
 
 awsDB.photoSeed();

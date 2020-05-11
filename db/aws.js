@@ -42,9 +42,13 @@ const photoSeed = () => {
                       } else {
                         const homeId = parseInt(idx, 10);
                         // insert query for DB, inserts the URL returned from the s3.upload
-                        db.seed(`INSERT INTO photo_info (home_id, file_url) values (${homeId}, "${succ.Location}")`);
-                        // console logs the photo url, not strictly needed
-                        console.log(succ.Location);
+                        db.insertOne(`INSERT INTO photo_info (home_id, file_url) values (${homeId}, "${succ.Location}")`, (err) => {
+                          if (err) {
+                            console.log(err);
+                          } else {
+                            console.log(succ.Location);
+                          }
+                        });
                       }
                     });
                   }

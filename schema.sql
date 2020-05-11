@@ -9,7 +9,7 @@ CREATE TABLE home_info (
   title VARCHAR(255),
   home_type VARCHAR(255),
   beds int,
-  rating DECIMAL(3, 2),
+  rating VARCHAR(4),
   rating_num int,
   price int,
   is_plus int,
@@ -20,5 +20,7 @@ CREATE TABLE photo_info (
   id int NOT NULL AUTO_INCREMENT,
   home_id int,
   file_url VARCHAR(255),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (home_id)
+    REFERENCES home_info(home_id)
 );

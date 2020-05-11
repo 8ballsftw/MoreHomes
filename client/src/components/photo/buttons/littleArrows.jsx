@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import left from '../../../../../public/site media/icons8-chevron-left-60.png';
-import right from '../../../../../public/site media/icons8-chevron-right-60.png';
+import left from '../../../../../public/site media/black-left-arrow.png';
+import right from '../../../../../public/site media/black-right-arrow.png';
 
 const ArrowWrapper = styled.div`
   background: transparent;
@@ -20,16 +20,21 @@ const Button = styled.button`
   background: white;
   height: 28px;
   width: 28px;
-  box-shadow: 1px 1px 3px rgba(19, 19, 19, .5);
+  box-shadow: 0px 0px 3px rgba(19, 19, 19, .5);
+  opacity: .8;
   :focus {
     outline: none;
   }
   :hover {
     transform: scale(1.05, 1.05);
     cursor: pointer;
+    opacity: 1;
+    box-shadow: 0px 0px 25px rgba(19, 19, 19, .5);
   }
   :active {
-    box-shadow: -1px -1x 3px rgba(19, 19, 19, .5);
+    box-shadow: none;
+    opacity: 1;
+    box-shadow: inset 0px 0px 3px rgba(19, 19, 19, .5);
   }
 `;
 

@@ -35,16 +35,21 @@ const Button = styled.button`
   background: white;
   height: 28px;
   width: 28px;
-  box-shadow: 1px 1px 3px rgba(19, 19, 19, .5);
+  box-shadow: 0px 0px 3px rgba(19, 19, 19, .5);
+  opacity: ${(props) => props.heart ? '1' : '0.8'};
   :focus {
     outline: none;
   }
   :hover {
     transform: scale(1.05, 1.05);
     cursor: pointer;
+    opacity: 1;
+    box-shadow: 0px 0px 25px rgba(19, 19, 19, .5);
   }
   :active {
-    box-shadow: -1px -1x 3px rgba(19, 19, 19, .5);
+    box-shadow: none;
+    opacity: 1;
+    box-shadow: inset 0px 0px 3px rgba(19, 19, 19, .5);
   }
 `;
 
@@ -56,7 +61,7 @@ const Heart = ({
 }) => (
   <HeartWrapper className="heartWrapper">
     {heart
-      ? <Button className={`heartButton ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}>
+      ? <Button heart={heart} className={`heartButton ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}>
           <HeartImg className={`heartButton ${(index - 1).toString()}`} src={filledHeartImg} alt="heart" />
         </Button>
       : hovered
