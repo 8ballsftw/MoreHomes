@@ -34,16 +34,13 @@ const seeder = (idx) => {
     return rand;
   };
 
-  let rating = (randNum(275, 500) / 100).toString();
+  let rating = (randNum(275, 501) / 100).toString();
   if (rating.length === 1) rating = `${rating}.0`;
   const beds = randNum(1, 25);
   const ratingNum = randNum(0, 100);
   if (ratingNum === 0) rating = null;
   const price = randNum(25, 1200);
   const isPlus = plus();
-
-  // console.log(idx, title(), type(), beds, rating, ratingNum, price, isPlus);
-  // console.log('=======')
 
   db.insertOne(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`, (err, succ) => {
     if (err) {
