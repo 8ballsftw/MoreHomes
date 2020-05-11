@@ -7,3 +7,5 @@ seed the database with ```npm run seed```
 start babel with ```npm run react-dev```
 
 start the server with ```npm run server-dev```
+
+default port is 3004
