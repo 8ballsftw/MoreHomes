@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const AWS = require('aws-sdk');
-const db = require('./index.js');
+const db = require('../db/index.js');
 
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
@@ -62,4 +62,4 @@ const photoUpload = () => {
   });
 };
 
-module.exports.photoUpload = photoUpload;
+photoUpload();
