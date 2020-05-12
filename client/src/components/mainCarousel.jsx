@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Entry from './entry.jsx';
-import left from '../../../public/site media/grey-left-arrow.png';
-import right from '../../../public/site media/grey-right-arrow.png';
-import blank from '../../../public/site media/blank-arrow.png';
 
 const CarouselWrapper = styled.div`
   display: flex;
@@ -67,7 +64,9 @@ const MainCarousel = ({
   photoClickHandler,
   photoHoverHandler,
   heartClickHandler,
-}) => (
+}) => {
+  console.log('homes', homes)
+  return(
   <CarouselWrapper>
     <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigLeft" src={leftButton ? 'https://airbnb-project-photos.s3.amazonaws.com/site+media/grey_left_arrow.png' : 'https://airbnb-project-photos.s3.amazonaws.com/site+media/blank_arrow.png'} alt="left" /></Button>
     <EntryWrapperWrapper>
@@ -91,6 +90,7 @@ const MainCarousel = ({
     <Button className="bigRight" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigRight" src={rightButton ? 'https://airbnb-project-photos.s3.amazonaws.com/site+media/grey_right_arrow.png' : 'https://airbnb-project-photos.s3.amazonaws.com/site+media/blank_arrow.png'} alt="right" /></Button>
   </CarouselWrapper>
 );
+        };
 
 MainCarousel.propTypes = {
   homes: PropTypes.arrayOf(PropTypes.object).isRequired,

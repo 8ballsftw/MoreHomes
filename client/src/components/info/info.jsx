@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import star from '../../../../public/site media/red-star.png';
-import plus from '../../../../public/site media/plus.png';
-import plusStar from '../../../../public/site media/plus-star.png';
 
 const InfoWrapper = styled.div`
   line-height: 20px;

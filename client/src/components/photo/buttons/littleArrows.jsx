@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import left from '../../../../../public/site media/black-left-arrow.png';
-import right from '../../../../../public/site media/black-right-arrow.png';
 
 const ArrowWrapper = styled.div`
   background: transparent;

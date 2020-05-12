@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import heartImg from '../../../../../public/site media/heart.png';
-import filledHeartImg from '../../../../../public/site media/filled_heart.png';
 
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-wrap-multilines */

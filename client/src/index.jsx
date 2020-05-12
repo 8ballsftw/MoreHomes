@@ -39,6 +39,7 @@ class App extends React.Component {
   componentDidMount() {
     axios.get(`/moreHomes/${Math.floor(Math.random() * 100) + 1}`)
       .then((res) => {
+        console.log(res)
         this.setState({
           homes: res.data,
         });

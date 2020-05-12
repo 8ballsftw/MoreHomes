@@ -1,6 +1,7 @@
 const db = require('../db/index.js');
 
 const initialize = (idx, callback) => {
+  console.log(idx)
   // creating array of random houses
   // could change this to a function that actually finds related homes rather than random
   const moreHomes = [];
