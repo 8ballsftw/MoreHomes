@@ -49,7 +49,7 @@ class App extends React.Component {
     }
     const request = {
       method: 'PUT',
-      url: '/init',
+      url: 'http://127.0.0.1:3004/init',
       data: { id: JSON.stringify(getArr) },
     };
     axios(request)
@@ -161,4 +161,5 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('morehomes'));
+ReactDOM.render(<App />, document.getElementById('MoreHomes'));
+// window.MoreHomes = App;
