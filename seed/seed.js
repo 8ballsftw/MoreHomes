@@ -1,6 +1,6 @@
 const db = require('../db/index.js');
 const photoUrl = require('./photoUrl.js');
-const schema = requre('./schema.sql');
+const schema = require('./schema.sql');
 
 const homeSeeder = (idx) => {
   for (let idx = 1; idx <= 100; idx += 1) {
