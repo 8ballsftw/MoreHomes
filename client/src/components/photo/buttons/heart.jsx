@@ -62,11 +62,11 @@ const Heart = ({
   <HeartWrapper className="heartWrapper">
     {heart
       ? <Button heart={heart} className={`heartButton ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}>
-          <HeartImg className={`heartButton ${(index - 1).toString()}`} src={filledHeartImg} alt="heart" />
+          <HeartImg className={`heartButton ${(index - 1).toString()}`} src={'https://airbnb-project-photos.s3.amazonaws.com/site+media/filled_heart.png'} alt="heart" />
         </Button>
       : hovered
         ? <Button className={`heartButton ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}>
-            <HeartImg className={`heartButton ${(index - 1).toString()}`} src={heartImg} alt="heart" />
+            <HeartImg className={`heartButton ${(index - 1).toString()}`} src={'https://airbnb-project-photos.s3.amazonaws.com/site+media/heart.png'} alt="heart" />
           </Button>
         : <div />}
   </HeartWrapper>

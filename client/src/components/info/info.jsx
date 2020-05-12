@@ -96,11 +96,11 @@ const Info = ({ home }) => (
   <InfoWrapper>
     <LineOneWrapper className="lineOne">
       <TypeWrapper>
-        {home.is_plus ? <Plus src={plus} alt="plus" /> : null}
+        {home.is_plus ? <Plus src={'https://airbnb-project-photos.s3.amazonaws.com/site+media/plus.png'} alt="plus" /> : null}
         {`${home.home_type} · ${home.beds} beds`}
       </TypeWrapper>
       <RatingWrapper className="ratingWrapper">
-        <Star src={home.is_plus ? plusStar : star} alt="star" height="13" width="13" />
+        <Star src={home.is_plus ? 'https://airbnb-project-photos.s3.amazonaws.com/site+media/plus_star.png' : 'https://airbnb-project-photos.s3.amazonaws.com/site+media/red_star.png'} alt="star" height="13" width="13" />
         <Rating className="rating">{home.rating}</Rating>
         {` (${home.rating_num})`}
       </RatingWrapper>

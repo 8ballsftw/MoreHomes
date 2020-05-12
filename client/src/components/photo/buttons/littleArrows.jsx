@@ -53,10 +53,10 @@ const RightButtonImg = styled.img`
 const LittleArrows = ({ hovered, index, clickHandler }) => (
   <ArrowWrapper className="littleArrowWrapper">
     {hovered
-      ? <Button className={`left ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}><LeftButtonImg className={`left ${(index - 1).toString()}`} src={left} alt="left" /></Button>
+      ? <Button className={`left ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}><LeftButtonImg className={`left ${(index - 1).toString()}`} src={'https://airbnb-project-photos.s3.amazonaws.com/site+media/black_left_arrow.png'} alt="left" /></Button>
       : <div />}
     {hovered
-      ? <Button className={`right ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}><RightButtonImg className={`right ${(index - 1).toString()}`} src={right} alt="right" /></Button>
+      ? <Button className={`right ${(index - 1).toString()}`} onClick={(e) => clickHandler(e)}><RightButtonImg className={`right ${(index - 1).toString()}`} src={'https://airbnb-project-photos.s3.amazonaws.com/site+media/black_right_arrow.png'} alt="right" /></Button>
       : <div />}
   </ArrowWrapper>
 );

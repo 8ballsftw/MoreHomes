@@ -69,7 +69,7 @@ const MainCarousel = ({
   heartClickHandler,
 }) => (
   <CarouselWrapper>
-    <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigLeft" src={leftButton ? left : blank} alt="left" /></Button>
+    <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigLeft" src={leftButton ? 'https://airbnb-project-photos.s3.amazonaws.com/site+media/grey_left_arrow.png' : 'https://airbnb-project-photos.s3.amazonaws.com/site+media/blank_arrow.png'} alt="left" /></Button>
     <EntryWrapperWrapper>
       <EntryWrapper homeId={homeId}>
         {homes.map((home, index) => (
@@ -88,7 +88,7 @@ const MainCarousel = ({
         ))}
       </EntryWrapper>
     </EntryWrapperWrapper>
-    <Button className="bigRight" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigRight" src={rightButton ? right : blank} alt="right" /></Button>
+    <Button className="bigRight" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigRight" src={rightButton ? 'https://airbnb-project-photos.s3.amazonaws.com/site+media/grey_right_arrow.png' : 'https://airbnb-project-photos.s3.amazonaws.com/site+media/blank_arrow.png'} alt="right" /></Button>
   </CarouselWrapper>
 );
 
