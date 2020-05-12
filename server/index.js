@@ -14,17 +14,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.get('/homeInfo/:property_id', (req, res) => {
-  db.getHomeInfo(req.params.property_id, (err, succ) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      res.status(200).send(succ);
-    }
-  });
+  // db.getHomeInfo(req.params.property_id, (err, succ) => {
+  //   if (err) {
+  //     res.status(404).send(err);
+  //   } else {
+  //     res.status(200).send(succ);
+  //   }
+  // });
+
 });
 
-app.put('/init', (req, res) => {
-  Model.initialize(req.body.id, (err, data) => {
+app.get('/moreHomes/:index', (req, res) => {
+  Model.initialize(req.params.index, (err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {

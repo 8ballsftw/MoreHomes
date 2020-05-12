@@ -21,7 +21,7 @@ const Button = styled.button`
   height: 28px;
   width: 28px;
   box-shadow: 0px 0px 3px rgba(19, 19, 19, .5);
-  opacity: .8;
+  opacity: .85;
   :focus {
     outline: none;
   }

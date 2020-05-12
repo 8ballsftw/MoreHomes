@@ -21,11 +21,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       homes: [],
-      photos: [],
-      hearts: [],
+      photos: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      hearts: [false, false, false, false, false, false, false, false, false, false, false, false],
       leftButton: false,
       rightButton: true,
       hovered: -1,
+      homeId: 0,
     };
     this.onBigClick = this.onBigClick.bind(this);
     this.onLittleClick = this.onLittleClick.bind(this);
@@ -36,29 +37,10 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    const getArr = [];
-    const zeroArr = [];
-    const boolArr = [];
-    while (getArr.length < 12) {
-      const rand = Math.floor(Math.random() * 100) + 1;
-      if (getArr.indexOf(rand) === -1) {
-        getArr.push(rand);
-        zeroArr.push(0);
-        boolArr.push(false);
-      }
-    }
-    const request = {
-      method: 'PUT',
-      url: 'http://127.0.0.1:3004/init',
-      data: { id: JSON.stringify(getArr) },
-    };
-    axios(request)
+    axios.get(`/moreHomes/${Math.floor(Math.random() * 100) + 1}`)
       .then((res) => {
         this.setState({
           homes: res.data,
-          photos: zeroArr,
-          hearts: boolArr,
-          homeId: 0,
         });
       })
       .catch((err) => console.error(err));

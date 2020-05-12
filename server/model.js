@@ -1,18 +1,25 @@
 const db = require('../db/index.js');
 
-const initialize = (array, callback) => {
-  const arr = JSON.parse(array);
+const initialize = (idx, callback) => {
+  // creating array of random houses
+  // could change this to a function that actually finds related homes rather than random
+  const moreHomes = [];
+  while (moreHomes.length < 12) {
+    const rand = Math.floor(Math.random() * 100) + 1
+    if (moreHomes.indexOf(rand) === -1 && rand !== idx) moreHomes.push(rand);
+  }
+
   const response = [];
   let responseCount = 0;
   // async mapping
-  arr.forEach((home, index) => {
-    db.getHomeInfo(arr[index], (err, info) => {
+  moreHomes.forEach((home, index) => {
+    db.getHomeInfo(moreHomes[index], (err, info) => {
       if (err) {
         callback(err);
       } else {
         response[index] = info[0];
         responseCount += 1;
-        if (responseCount === arr.length) {
+        if (responseCount === moreHomes.length) {
           callback(null, response);
         }
       }
