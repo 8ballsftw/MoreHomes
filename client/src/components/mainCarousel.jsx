@@ -65,7 +65,6 @@ const MainCarousel = ({
   photoHoverHandler,
   heartClickHandler,
 }) => {
-  console.log('homes', homes)
   return(
   <CarouselWrapper>
     <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigLeft" src={leftButton ? 'https://airbnb-project-photos.s3.amazonaws.com/site+media/grey_left_arrow.png' : 'https://airbnb-project-photos.s3.amazonaws.com/site+media/blank_arrow.png'} alt="left" /></Button>

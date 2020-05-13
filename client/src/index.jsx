@@ -37,9 +37,8 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    axios.get(`/moreHomes/${Math.floor(Math.random() * 100) + 1}`)
+    axios.get(`http://127.0.0.1:3004/moreHomes/${Math.floor(Math.random() * 100) + 1}`)
       .then((res) => {
-        console.log(res)
         this.setState({
           homes: res.data,
         });
