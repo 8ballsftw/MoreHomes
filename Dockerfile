@@ -1,13 +1,13 @@
 FROM node:latest
 
-RUN mkdir -p /src/app
+RUN mkdir -p /src/homes
 
-WORKDIR /src/app
+WORKDIR /src/homes
 
-COPY . /src/app
+COPY . /src/homes
 
 RUN npm install
 
 EXPOSE 3000
 
-CMD ["npm", "run", "server-dev"]
+CMD ["npm", "start"]
