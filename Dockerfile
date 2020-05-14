@@ -1,13 +1,24 @@
-FROM node:latest
+# FROM node:latest
 
-RUN mkdir -p /src/homes
+# RUN mkdir -p /src/app
 
-WORKDIR /src/homes
+# WORKDIR /src/app
 
-COPY . /src/homes
+# COPY . /src/app
 
+# RUN npm install
+
+# EXPOSE 3000
+
+# CMD ["npm", "start"]
+
+FROM node:alpine
+WORKDIR /src/app
+
+COPY package.json .
 RUN npm install
 
-EXPOSE 3000
+COPY . .
 
+EXPOSE 3000
 CMD ["npm", "start"]

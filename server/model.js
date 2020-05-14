@@ -11,7 +11,6 @@ const initialize = (idx, callback) => {
 
   const response = [];
   let responseCount = 0;
-  // async mapping
   moreHomes.forEach((home, index) => {
     db.getHomeInfo(moreHomes[index], (err, info) => {
       if (err) {

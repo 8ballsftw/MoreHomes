@@ -6,7 +6,7 @@ seed the database with ```npm run seed```
 
 start babel with ```npm run react-dev```
 
-start the server with ```npm run server-dev```
+start the server with ```npm start```
 
 *NOT REQUIRED* to seed your own photos to AWS, create a folder named "homePhotos", and place one folder per home inside. upload with ```npm run photo-seed```
 

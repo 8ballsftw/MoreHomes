@@ -1,9 +1,14 @@
 const mysql = require('mysql');
 const credentials = require('./config.js')
 
-const connection = mysql.createConnection( credentials );
+const connection = mysql.createConnection( {
+  host: 'morehomesdb',
+  user: 'student',
+  password: 'student',
+  database: 'home_data'
+} );
 
-connection.connect();
+connection.connect((err) => {if (err) console.log(err)});
 
 // would like to split this out into a few different functions
 const insertOne = (q, callback) => {

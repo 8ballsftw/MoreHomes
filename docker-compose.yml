@@ -1,0 +1,19 @@
+version: '3'
+services:
+  morehomes:
+    container_name: morehomes-server
+    restart: always
+    build: .
+    ports:
+      - '3004:3004'
+    depends_on:
+      - morehomesdb
+    environment:
+      - PORT=3004
+  morehomesdb:
+    container_name: morehomesdb
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=student

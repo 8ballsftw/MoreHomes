@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=6.13.0"
   },
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint server/. db/. & eslint --ext jsx client/.",
@@ -43,7 +44,6 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
@@ -51,11 +51,9 @@
     "file-loader": "^6.0.0",
     "jest": "^25.5.4",
     "jest-environment-enzyme": "^7.1.2",
-    "jest-enzyme": "^7.1.2",
-    "puppeteer": "^3.0.2"
+    "jest-enzyme": "^7.1.2"
   },
   "version": "1.0.0",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/8ballsftw/MoreHomes.git"
