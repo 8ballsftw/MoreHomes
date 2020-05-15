@@ -43,31 +43,34 @@ const homeSeeder = (idx) => {
     const price = randNum(25, 1200);
     const isPlus = plus();
 
-    db.query(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`, (err, succ) => {
-      if (err) {
-        console.log(err);
-      } else {
-        if (idx === 0) console.log('home_info seeding.');
-        if (idx === 33) console.log('home_info seeding..');
-        if (idx === 66) console.log('home_info seeding...');
-        if (idx === 100) console.log('home_info seeding COMPLETE');
-      }
-    });
+    // console.log(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`)
+
+    // db.query(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`, (err, succ) => {
+    //   if (err) {
+    //     console.log(err);
+    //   } else {
+    //     if (idx === 0) console.log('home_info seeding.');
+    //     if (idx === 33) console.log('home_info seeding..');
+    //     if (idx === 66) console.log('home_info seeding...');
+    //     if (idx === 100) console.log('home_info seeding COMPLETE');
+    //   }
+    // });
   }
 };
 
 const photoSeeder = () => {
   photoUrl.forEach((photo, index) => {
-    db.query(`INSERT INTO photo_info (home_id, file_url) values (${photo.home_id}, "${photo.file_url}")`, (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        if (index === 0) console.log('photo_info seeding.');
-        if (index === 33) console.log('photo_info seeding..');
-        if (index === 66) console.log('photo_info seeding...');
-        if (index === photoUrl.length - 1) console.log('photo_info seeding COMPLETE');
-      }
-    });
+    console.log(`INSERT INTO photo_info (home_id, file_url) values (${photo.home_id}, "${photo.file_url}");`)
+    // db.query(`INSERT INTO photo_info (home_id, file_url) values (${photo.home_id}, "${photo.file_url}")`, (err) => {
+    //   if (err) {
+    //     console.log(err);
+    //   } else {
+    //     if (index === 0) console.log('photo_info seeding.');
+    //     if (index === 33) console.log('photo_info seeding..');
+    //     if (index === 66) console.log('photo_info seeding...');
+    //     if (index === photoUrl.length - 1) console.log('photo_info seeding COMPLETE');
+    //   }
+    // });
   });
 };
 

@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const credentials = require('./config.js')
 
 const connection = mysql.createConnection( {
-  host: 'morehomesdb',
+  host: '172.17.0.2',
   user: 'root',
   password: 'student',
   database: 'home_data'

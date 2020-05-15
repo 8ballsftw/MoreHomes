@@ -14,7 +14,6 @@ services:
     container_name: morehomes
     image: mysql:5.7
     volumes:
-      # - ./mysql-dump:/docker-entrypoint-initdb.d
       - ./seed:/docker-entrypoint-initdb.d
     ports:
       - '3306:3306'
