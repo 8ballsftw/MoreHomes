@@ -3,17 +3,25 @@ const credentials = require('./config.js')
 
 const connection = mysql.createConnection( {
   host: 'morehomesdb',
-  user: 'student',
+  user: 'root',
   password: 'student',
   database: 'home_data'
 } );
 
-connection.connect((err) => {if (err) console.log(err)});
+connection.connect(err => {
+  if (err) {
+    console.log(err);
+  }
+});
 
 // would like to split this out into a few different functions
-const insertOne = (q, callback) => {
+const query = (q, callback) => {
   connection.query(q, callback);
 };
+
+const end = () => {
+  connection.end()
+}
 
 // getting the info for one home
 // ideally would refactor this to a promise chain
@@ -44,4 +52,5 @@ const getHomeInfo = (id, callback) => {
 };
 
 module.exports.getHomeInfo = getHomeInfo;
-module.exports.insertOne = insertOne;
+module.exports.query = query;
+module.exports.end = end;
