@@ -13,6 +13,22 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
+// app.get('*.js', function (req, res, next) {
+//   req.url = req.url + '.gz';
+//   res.set('Content-Encoding', 'gzip');
+//   next();
+// });
+
+app.get('/photoUrl', (req, res) => {
+  Model.photoUrl((err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(data);
+    }
+  })
+})
+
 // app.get('/:index', (req, res) => {
 //   Model.initialize(req.params.index, (err, data) => {
 //     if (err) {

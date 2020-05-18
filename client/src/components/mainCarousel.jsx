@@ -25,6 +25,7 @@ const EntryWrapperWrapper = styled.div`
   height: inherit;
   width: 72%;
   overflow: hidden;
+  max-width: 1050px;
 `;
 
 const Button = styled.button`
@@ -66,9 +67,9 @@ const MainCarousel = ({
   heartClickHandler,
 }) => {
   return(
-  <CarouselWrapper>
+  <CarouselWrapper className="carouselWrapper">
     <Button className="bigLeft" onClick={(e) => bigClickHandler(e)}><ButtonImg className="bigLeft" src={leftButton ? 'https://airbnb-project-photos.s3.amazonaws.com/site+media/grey_left_arrow.png' : 'https://airbnb-project-photos.s3.amazonaws.com/site+media/blank_arrow.png'} alt="left" /></Button>
-    <EntryWrapperWrapper>
+    <EntryWrapperWrapper className="entryWrapperWrapper">
       <EntryWrapper homeId={homeId}>
         {homes.map((home, index) => (
           <Entry
@@ -77,6 +78,8 @@ const MainCarousel = ({
             index={index + 1}
             photo={photos[index]}
             heart={hearts[index]}
+            // displayPhoto={true}
+            displayPhoto={index > homeId - 2 && index < homeId + 4}
             hovered={hovered === index + 1}
             arrowClickHandler={littleClickHandler}
             photoClickHandler={photoClickHandler}

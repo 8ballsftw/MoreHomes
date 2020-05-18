@@ -1,16 +1,34 @@
 const mysql = require('mysql');
 const credentials = require('./config.js')
 
-const connection = mysql.createConnection( {
+//localhost
+// let connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'student',
+//   password: 'student',
+//   database: 'home_data'
+// });
+// connection.connect()
+
+
+let connection = mysql.createConnection({
   host: '172.17.0.2',
   user: 'root',
   password: 'student',
   database: 'home_data'
-} );
-
+});
+// mysql host ip sometimes jumps to 172.17.0.3, this will catch that and create a connection
 connection.connect(err => {
   if (err) {
-    console.log(err);
+    connection = mysql.createConnection( {
+      host: '172.17.0.3',
+      user: 'root',
+      password: 'student',
+      database: 'home_data'
+    });
+    connection.connect(err => {
+      if (err) console.log('double error', err)
+    });
   }
 });
 

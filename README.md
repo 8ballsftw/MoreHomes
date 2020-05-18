@@ -1,4 +1,4 @@
-This is a reproduction of the airbnb "More homes You May Like" module.
+This is a reproduction of a "More homes You May Like" carousel.
 
 create the database with ```< seed/schema.sql```
 
