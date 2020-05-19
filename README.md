@@ -4,7 +4,7 @@ create the database with ```< seed/schema.sql```
 
 seed the database with ```npm run seed```
 
-start babel with ```npm run react-dev```
+start babel with ```npm run react-prod```
 
 start the server with ```npm start```
 
