@@ -28,8 +28,6 @@ const photoUpload = () => {
                   if (file !== '.DS_Store' && file !== 'BulkResizePhotos.html') {
                     // trim file name for key
                     const currKey = `${idx}-${file.substring(0, 8)}`;
-
-                    // console.log(currKey)
                     // params for AWS upload
                     s3.upload({
                       Bucket: `airbnb-project-photos/${idx}`,
@@ -43,13 +41,13 @@ const photoUpload = () => {
                       } else {
                         const homeId = parseInt(idx, 10);
                         // insert query for DB, inserts the URL returned from the s3.upload
-                        // db.query(`INSERT INTO photo_info (home_id, file_url) values (${homeId}, "${succ.Location}")`, (err) => {
-                        //   if (err) {
-                        //     console.log(err);
-                        //   } else {
-                        //     console.log(succ.Location);
-                        //   }
-                        // });
+                        db.query(`INSERT INTO photo_info (home_id, file_url) values (${homeId}, "${succ.Location}")`, (err) => {
+                          if (err) {
+                            console.log(err);
+                          } else {
+                            console.log(succ.Location);
+                          }
+                        });
                         console.log(succ.Location)
                       }
                     });

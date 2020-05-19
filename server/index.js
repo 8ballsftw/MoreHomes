@@ -13,12 +13,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-// app.get('*.js', function (req, res, next) {
-//   req.url = req.url + '.gz';
-//   res.set('Content-Encoding', 'gzip');
-//   next();
-// });
-
 app.get('/photoUrl', (req, res) => {
   Model.photoUrl((err, data) => {
     if (err) {

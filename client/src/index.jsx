@@ -144,4 +144,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('MoreHomes'));
-// window.MoreHomes = App;
