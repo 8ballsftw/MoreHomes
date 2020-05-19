@@ -8,12 +8,12 @@ const PhotoImg = styled.img`
   object-fit: cover;
 `;
 
-const PhotoImage = ({ photo, title, clickHandler }) => (
-  <PhotoImg className="homePhoto" src={photo} alt={title} onClick={() => clickHandler()} />
+const PhotoImage = ({ photoUrl, title, clickHandler }) => (
+  <PhotoImg className="homePhoto" src={photoUrl} alt={title} onClick={() => clickHandler()} />
 );
 
 PhotoImage.propTypes = {
-  photo: PropTypes.string.isRequired,
+  photoUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   clickHandler: PropTypes.func.isRequired,
 };

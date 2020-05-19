@@ -1,18 +1,20 @@
 {
   "name": "morehomes",
-  "description": "This is a reproduction of the airbnb \"More homes you may like\" module",
+  "description": "This is a version of a \"More homes you may like\" carousel with internal carousels",
   "author": "Brian de Regt",
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint server/. db/. & eslint --ext jsx client/.",
     "seed": "node seed/seed.js",
     "photo-seed": "node seed/aws.js",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "react-prod": "webpack -p --watch",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",
@@ -39,11 +41,12 @@
     "@babel/polyfill": "^7.0.0-beta.51",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.4.2",
+    "babel-plugin-styled-components": "^1.10.7",
+    "compression-webpack-plugin": "^4.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
@@ -51,11 +54,9 @@
     "file-loader": "^6.0.0",
     "jest": "^25.5.4",
     "jest-environment-enzyme": "^7.1.2",
-    "jest-enzyme": "^7.1.2",
-    "puppeteer": "^3.0.2"
+    "jest-enzyme": "^7.1.2"
   },
   "version": "1.0.0",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/8ballsftw/MoreHomes.git"

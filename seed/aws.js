@@ -5,7 +5,7 @@ const db = require('../db/index.js');
 
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
-const photoDir = path.join(__dirname, '../homePhotos');
+const photoDir = path.join(__dirname, '../../homePhotosCompressed');
 
 //this is only for the initial photoseed, but it would be good to change it to a promise chain
 const photoUpload = () => {
@@ -25,7 +25,7 @@ const photoUpload = () => {
               } else {
                 files.forEach((file) => {
                   // ignore .DS_Store
-                  if (file !== '.DS_Store') {
+                  if (file !== '.DS_Store' && file !== 'BulkResizePhotos.html') {
                     // trim file name for key
                     const currKey = `${idx}-${file.substring(0, 8)}`;
                     // params for AWS upload
@@ -41,13 +41,14 @@ const photoUpload = () => {
                       } else {
                         const homeId = parseInt(idx, 10);
                         // insert query for DB, inserts the URL returned from the s3.upload
-                        db.insertOne(`INSERT INTO photo_info (home_id, file_url) values (${homeId}, "${succ.Location}")`, (err) => {
+                        db.query(`INSERT INTO photo_info (home_id, file_url) values (${homeId}, "${succ.Location}")`, (err) => {
                           if (err) {
                             console.log(err);
                           } else {
                             console.log(succ.Location);
                           }
                         });
+                        console.log(succ.Location)
                       }
                     });
                   }

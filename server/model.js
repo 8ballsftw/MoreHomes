@@ -11,7 +11,6 @@ const initialize = (idx, callback) => {
 
   const response = [];
   let responseCount = 0;
-  // async mapping
   moreHomes.forEach((home, index) => {
     db.getHomeInfo(moreHomes[index], (err, info) => {
       if (err) {
@@ -27,4 +26,15 @@ const initialize = (idx, callback) => {
   });
 };
 
+const photoUrl = (cb) => {
+  db.query(`select home_id, file_url from photo_info;`, (err, info) => {
+    if (err) {
+      console.log(err)
+    } else {
+      cb(null, info);
+    }
+  })
+}
+
 module.exports.initialize = initialize;
+module.exports.photoUrl = photoUrl;

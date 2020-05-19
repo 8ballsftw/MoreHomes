@@ -43,23 +43,32 @@ const homeSeeder = (idx) => {
     const price = randNum(25, 1200);
     const isPlus = plus();
 
-    db.insertOne(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`, (err, succ) => {
+    // console.log(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`)
+
+    db.query(`INSERT INTO home_info (home_id, title, home_type, beds, rating, rating_num, price, is_plus) VALUES (${idx}, "${title()}", "${type()}", ${beds}, ${rating}, ${ratingNum}, ${price}, ${isPlus});`, (err, succ) => {
       if (err) {
-        throw err
+        console.log(err);
       } else {
-        console.log(succ);
+        if (idx === 0) console.log('home_info seeding.');
+        if (idx === 33) console.log('home_info seeding..');
+        if (idx === 66) console.log('home_info seeding...');
+        if (idx === 100) console.log('home_info seeding COMPLETE');
       }
     });
   }
 };
 
 const photoSeeder = () => {
-  photoUrl.forEach((photo) => {
-    db.insertOne(`INSERT INTO photo_info (home_id, file_url) values (${photo.home_id}, "${photo.file_url}")`, (err) => {
+  photoUrl.forEach((photo, index) => {
+    // console.log(`INSERT INTO photo_info (home_id, file_url) values (${photo.home_id}, "${photo.file_url}");`)
+    db.query(`INSERT INTO photo_info (home_id, file_url) values (${photo.home_id}, "${photo.file_url}")`, (err) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(photo.file_url);
+        if (index === 0) console.log('photo_info seeding.');
+        if (index === 33) console.log('photo_info seeding..');
+        if (index === 66) console.log('photo_info seeding...');
+        if (index === photoUrl.length - 1) console.log('photo_info seeding COMPLETE');
       }
     });
   });
@@ -67,3 +76,4 @@ const photoSeeder = () => {
 
 homeSeeder();
 photoSeeder();
+db.end();

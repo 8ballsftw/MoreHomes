@@ -1,14 +1,45 @@
 const mysql = require('mysql');
 const credentials = require('./config.js')
 
-const connection = mysql.createConnection( credentials );
+//localhost
+// let connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'student',
+//   password: 'student',
+//   database: 'home_data'
+// });
+// connection.connect()
 
-connection.connect();
+
+let connection = mysql.createConnection({
+  host: '172.17.0.2',
+  user: 'root',
+  password: 'student',
+  database: 'home_data'
+});
+// mysql host ip sometimes jumps to 172.17.0.3, this will catch that and create a connection
+connection.connect(err => {
+  if (err) {
+    connection = mysql.createConnection( {
+      host: '172.17.0.3',
+      user: 'root',
+      password: 'student',
+      database: 'home_data'
+    });
+    connection.connect(err => {
+      if (err) console.log('double error', err)
+    });
+  }
+});
 
 // would like to split this out into a few different functions
-const insertOne = (q, callback) => {
+const query = (q, callback) => {
   connection.query(q, callback);
 };
+
+const end = () => {
+  connection.end()
+}
 
 // getting the info for one home
 // ideally would refactor this to a promise chain
@@ -39,4 +70,5 @@ const getHomeInfo = (id, callback) => {
 };
 
 module.exports.getHomeInfo = getHomeInfo;
-module.exports.insertOne = insertOne;
+module.exports.query = query;
+module.exports.end = end;

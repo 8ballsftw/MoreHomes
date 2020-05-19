@@ -1,7 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
+
 module.exports = {
   entry: __dirname + '/client/src/index.jsx',
+  plugins: [new CompressionPlugin()],
   module: {
     rules: [
       {

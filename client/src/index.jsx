@@ -37,7 +37,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    axios.get(`http://127.0.0.1:3004/moreHomes/${Math.floor(Math.random() * 100) + 1}`)
+    axios.get(`http://184.72.255.69:3004/moreHomes/${Math.floor(Math.random() * 100) + 1}`)
       .then((res) => {
         this.setState({
           homes: res.data,
@@ -144,4 +144,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('MoreHomes'));
-// window.MoreHomes = App;

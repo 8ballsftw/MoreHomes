@@ -6,6 +6,8 @@ import PhotoImage from './photoImage.jsx';
 import PhotoDots from './dots/photoDots.jsx';
 import LittleArrows from './buttons/littleArrows.jsx';
 
+const placeHolder = 'https://airbnb-project-photos.s3.amazonaws.com/site+media/photo_placeholder.svg'
+
 const PhotoWrapper = styled.div`
   position: relative;
   border-radius: 5px;
@@ -27,7 +29,6 @@ const PhotoImageWrapper = styled.div`
   transition: transform 500ms ease;
   transform: translateX(-${(props) => props.photo * 100}%);
 `;
-
 
 const Photo = ({
   home,
@@ -61,9 +62,15 @@ const Photo = ({
       length={home.photos ? home.photos.length : 0}
     />
     <PhotoImageWrapper photo={photo}>
-      {home.photos.map((photo, key) => (
+      {home.photos.map((photoUrl, key) => (
         <PhotoImage
-          photo={photo}
+          // photoUrl={photoUrl}
+          photoUrl={
+            ((photo < key + 2 && photo > key - 2)
+            || (key === home.photos.length - 1 && photo === 0)
+            || (photo === home.photos.length - 1 && key === 0))
+            ? photoUrl
+            : placeHolder}
           key={key}
           title={home.title}
           clickHandler={photoClickHandler}
